@@ -1,4 +1,4 @@
-module HelpPackage
+module github.com/Cc360428/HelpPackage
 
 go 1.13
 

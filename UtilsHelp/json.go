@@ -1,7 +1,7 @@
 package UtilsHelp
 
 import (
-	"HelpPackage/result"
+	"github.com/Cc360428/HelpPackage/result"
 	"encoding/json"
 	_ "encoding/json"
 	"fmt"
