@@ -3,7 +3,7 @@ package UtilsHelp
 import (
 	"fmt"
 	"github.com/goinggo/mapstructure"
-	"github.com/satori/go.uuid"
+	//"github.com/satori/go.uuid"
 	"net"
 	"reflect"
 	"strconv"
@@ -42,10 +42,10 @@ func ToInt64V2(v interface{}) (d int64, err error) {
 }
 
 //获取盐值
-func Salt() (salt string, err error) {
-	uuid, err := uuid.NewV4()
-	return uuid.String(), err
-}
+//func Salt() (salt string, err error) {
+//	uuid, err := uuid.NewV4()
+//	return uuid.String(), err
+//}
 
 //string 转 int
 func StringTurnInt(pr string) (r int, err error) {
