@@ -1,7 +1,6 @@
 package redis
 
 import (
-	"fmt"
 	"github.com/astaxie/beego/logs"
 	"gopkg.in/redis.v5"
 	"os"
