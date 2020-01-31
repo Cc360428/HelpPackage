@@ -3,5 +3,5 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println("你是：lcc")
+	fmt.Println("2020 01 31 update")
 }
