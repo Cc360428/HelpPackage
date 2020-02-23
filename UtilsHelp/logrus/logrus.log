@@ -1,0 +1,3 @@
+time="2020-02-21T17:35:18+08:00" level=info msg="这是"
+time="2020-02-21T17:35:18+08:00" level=info msg=debug
+time="2020-02-21T17:35:18+08:00" level=error msg=error
