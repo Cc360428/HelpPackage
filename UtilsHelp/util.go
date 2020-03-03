@@ -2,11 +2,13 @@ package UtilsHelp
 
 import (
 	"fmt"
-	"github.com/goinggo/mapstructure"
-	//"github.com/satori/go.uuid"
+
 	"net"
 	"reflect"
 	"strconv"
+
+	"github.com/Cc360428/HelpPackage/UtilsHelp/uuid"
+	"github.com/goinggo/mapstructure"
 )
 
 //  将任何数值转换为Int64
@@ -42,10 +44,10 @@ func ToInt64V2(v interface{}) (d int64, err error) {
 }
 
 //获取盐值
-//func Salt() (salt string, err error) {
-//	uuid, err := uuid.NewV4()
-//	return uuid.String(), err
-//}
+func Salt() (salt string, err error) {
+	uuid, err := uuid.NewV4()
+	return uuid.String(), err
+}
 
 //string 转 int
 func StringTurnInt(pr string) (r int, err error) {
