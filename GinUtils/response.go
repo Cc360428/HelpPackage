@@ -2,9 +2,8 @@
 package GinUtils
 
 import (
-	"errors"
-	"github.com/Cc360428/HelpPackage/UtilsHelp/logs"
 	"github.com/gin-gonic/gin"
+	"net/http"
 )
 
 //
@@ -29,7 +28,7 @@ type ResponseError struct {
 }
 
 func ResponseErrorBody(c *gin.Context, msg interface{}) {
-	c.JSON(200, ResponseError{
+	c.JSON(http.StatusOK, ResponseError{
 		Code: RetError,
 		Msg:  msg,
 		Data: nil,
@@ -37,17 +36,10 @@ func ResponseErrorBody(c *gin.Context, msg interface{}) {
 }
 
 func ResponseSuccessBody(c *gin.Context, data interface{}) {
-	c.JSON(200, ResponseError{
+	c.JSON(http.StatusOK, ResponseError{
 		Code: RetSuccess,
 		Msg:  "",
 		Data: data,
 	})
 }
 
-func ParseJSON(c *gin.Context, obj interface{}) error {
-	if err := c.ShouldBindJSON(obj); err != nil {
-		logs.Error(err)
-		return errors.New("解析请求参数发生错误")
-	}
-	return nil
-}

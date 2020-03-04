@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/Cc360428/HelpPackage/GinUtils"
+	"github.com/Cc360428/HelpPackage/UtilsHelp/logs"
 	"github.com/gin-gonic/gin"
 )
 
@@ -21,13 +22,17 @@ type Login struct {
 func Auth(context *gin.Context) {
 	var request Login
 	err := GinUtils.ParseJSON(context, &request)
+	logs.Info(request)
 	if err != nil {
 		GinUtils.ResponseErrorBody(context, err)
+	} else {
+		GinUtils.ResponseSuccessBody(context, request)
 	}
-	GinUtils.ResponseSuccessBody(context, request)
 }
 
 // GetOne 获取单个
 func GetOne(context *gin.Context) {
+	param := context.Query("id")
 
+	logs.Info("参数：", param)
 }
