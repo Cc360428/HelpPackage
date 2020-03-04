@@ -1,6 +1,12 @@
 // Gin request 请求参数
 package GinUtils
 
+import (
+	"errors"
+	"github.com/Cc360428/HelpPackage/UtilsHelp/logs"
+	"github.com/gin-gonic/gin"
+)
+
 // ParseJSON 获取json 和解析参数
 func ParseJSON(c *gin.Context, obj interface{}) error {
 	//  解析是否是json 格式
