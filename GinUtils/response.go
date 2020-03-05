@@ -27,6 +27,7 @@ type ResponseError struct {
 	Data interface{} `json:"data"`
 }
 
+// ResponseErrorBody 请求错误
 func ResponseErrorBody(c *gin.Context, msg interface{}) {
 	c.JSON(http.StatusOK, ResponseError{
 		Code: RetError,
@@ -35,11 +36,20 @@ func ResponseErrorBody(c *gin.Context, msg interface{}) {
 	})
 }
 
-func ResponseSuccessBody(c *gin.Context, data interface{}) {
+// ResponseSuccessBody 请求成功
+func ResponseSuccessBody(c *gin.Context, msg, data interface{}) {
 	c.JSON(http.StatusOK, ResponseError{
 		Code: RetSuccess,
-		Msg:  "",
+		Msg:  msg,
 		Data: data,
 	})
 }
 
+// ResponseWarningBody 警告
+func ResponseWarningBody(c *gin.Context, msg, data interface{}) {
+	c.JSON(http.StatusOK, ResponseError{
+		Code: RetWarning,
+		Msg:  msg,
+		Data: data,
+	})
+}
