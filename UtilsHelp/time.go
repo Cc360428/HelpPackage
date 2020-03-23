@@ -28,7 +28,7 @@ func DateDayZero() (r int64) {
 }
 
 //Time stamp for the morning of the day: in milliseconds
-//获取当日凌晨时间戳（毫秒）
+// DateDayMilliseconds 获取当日凌晨时间戳（毫秒）
 func DateDayMilliseconds() (r int64) {
 	t := time.Now()
 	zeroTm := time.Date(t.Year(), t.Month(), t.Day(), 0, 0, 0, 0, t.Location()).Unix()
@@ -36,7 +36,7 @@ func DateDayMilliseconds() (r int64) {
 	return r
 }
 
-//当前周一凌晨和周日最后时间戳
+// WeekOneAndWeekSevenTime 当前周一凌晨和周日最后时间戳
 func WeekOneAndWeekSevenTime() (one int64, seven int64) {
 	d := int64(86400000)
 	t := time.Now()

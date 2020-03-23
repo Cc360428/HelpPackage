@@ -44,7 +44,6 @@ func RandomString(length int) string {
 	return strings.Join(result, "")
 }
 
-
 //start：正数 - 在字符串的指定位置开始,超出字符串长度强制把start变为字符串长度
 //       负数 - 在从字符串结尾的指定位置开始
 //       0 - 在字符串中的第一个字符处开始
@@ -74,7 +73,6 @@ func Substr(str string, start, length int) string {
 	}
 	return string(runeStr[start:end])
 }
-
 
 //随机取出一定长度的随机数字
 func GenValidateCode(width int) string {
@@ -115,14 +113,12 @@ func RemoveDuplicatesAndEmpty(a []string) (ret []string) {
 	return
 }
 
-
 func Intercept(parameter string, condition string) string {
 	c := strings.Index(parameter, condition)
 	pos := strings.Index(parameter[c:], "")
 	s := parameter[c+pos:]
 	return s
 }
-
 
 //字符串分割
 //第一个参数为要分割的字符串，第二个参数为分割的条件

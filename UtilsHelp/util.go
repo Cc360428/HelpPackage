@@ -3,7 +3,6 @@ package UtilsHelp
 import (
 	"fmt"
 
-	"net"
 	"reflect"
 	"strconv"
 
@@ -109,20 +108,4 @@ func ConvertInterfaceToMap(src interface{}) (dest map[string]interface{}, isMap 
 	}
 	isMap = true
 	return
-}
-
-// 获取本地IP地址
-func GetLocalIPAddress() string {
-	adders, err := net.InterfaceAddrs()
-	if err != nil {
-		return ""
-	}
-	for _, address := range adders {
-		if inet, ok := address.(*net.IPNet); ok && !inet.IP.IsLoopback() {
-			if inet.IP.To4() != nil {
-				return inet.IP.String()
-			}
-		}
-	}
-	return ""
 }

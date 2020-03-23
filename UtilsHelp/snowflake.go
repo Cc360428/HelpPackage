@@ -1,6 +1,6 @@
 package UtilsHelp
 
-//生成唯一的值
+// 雪花算法 生成唯一的值
 import (
 	"errors"
 	"fmt"
@@ -28,7 +28,6 @@ type IdWorker struct {
 }
 
 func (this *IdWorker) InitIdWorker(workerId, datacenterId int64) error {
-
 	var baseValue int64 = -1
 	this.startTime = 1463834116272
 	this.workerIdBits = 5
