@@ -2,6 +2,8 @@ package UtilsHelp
 
 import (
 	"fmt"
+	"os"
+	"path/filepath"
 
 	"reflect"
 	"strconv"
@@ -108,4 +110,10 @@ func ConvertInterfaceToMap(src interface{}) (dest map[string]interface{}, isMap 
 	}
 	isMap = true
 	return
+}
+
+// GetBinAbsPath 获取当前运行路径
+func GetBinAbsPath() string {
+	dir, _ := filepath.Abs(filepath.Dir(os.Args[0]))
+	return dir
 }
