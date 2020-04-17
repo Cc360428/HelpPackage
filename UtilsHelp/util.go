@@ -1,6 +1,7 @@
 package UtilsHelp
 
 import (
+	"encoding/json"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -46,8 +47,8 @@ func ToInt64V2(v interface{}) (d int64, err error) {
 
 //获取盐值
 func Salt() (salt string, err error) {
-	uuid, err := uuid.NewV4()
-	return uuid.String(), err
+	UUID, err := uuid.NewV4()
+	return UUID.String(), err
 }
 
 //string 转 int
@@ -116,4 +117,21 @@ func ConvertInterfaceToMap(src interface{}) (dest map[string]interface{}, isMap 
 func GetBinAbsPath() string {
 	dir, _ := filepath.Abs(filepath.Dir(os.Args[0]))
 	return dir
+}
+
+// 对比两者是否相等
+func Equals(a, b interface{}) (bool, error) {
+	aJson, err := json.Marshal(a)
+	if err != nil {
+		return false, err
+	}
+	bJson, err := json.Marshal(b)
+	if err != nil {
+		return false, err
+	}
+	if string(aJson) == string(bJson) {
+		return true, nil
+	} else {
+		return false, nil
+	}
 }
