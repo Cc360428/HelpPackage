@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/Cc360428/HelpPackage/UtilsHelp/logs"
 )
+
 // Trans
 func Affair(db *sql.DB, txFunc func(*sql.Tx) error) (err error) {
 	tx, err := db.Begin()
