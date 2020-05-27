@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package help_package.v1;
+
+service CcPackage {
+    // rpc funcName (request) returns (response) {}
+    rpc GetNameByCode (GetNameByCodeRequest) returns (GetNameByCodeResponse) {
+        // 自定义 （http ....）
+    }
+}
+
+// request
+message GetNameByCodeRequest {
+    int64 code = 1;
+    string codeType = 2;
+    // 定义数组
+    repeated string ClientTokens = 3;
+    GenderType gender = 4;
+}
+
+// response
+message GetNameByCodeResponse {
+    string name = 1;
+    repeated GetNameByCodeRequest persons = 2;
+}
+
+// 性别类型
+// 枚举类型第一个字段必须为0
+enum GenderType {
+    SECRET = 0;
+    FEMALE = 1;
+    MALE = 2;
+}
