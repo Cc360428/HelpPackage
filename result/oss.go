@@ -3,6 +3,7 @@ package result
 import (
 	"bytes"
 	"fmt"
+	"github.com/Cc360428/HelpPackage/beego_utils"
 	"github.com/aliyun/aliyun-oss-go-sdk/oss"
 	"github.com/astaxie/beego/logs"
 	"io/ioutil"
@@ -24,25 +25,25 @@ func GlobalOssInit() {
 	var err error
 
 	//
-	GlobalOssEndpoint, err = HelperConfigSessStringcfg("oss", "endpoint")
+	GlobalOssEndpoint, err = beego_utils.HelperConfigSessStringcfg("oss", "endpoint")
 	if err != nil {
 		GlobalOssEndpoint = "oss-cn-shanghai.aliyuncs.com"
 	}
 
 	//
-	GlobalOssAccessKeyId, err = HelperConfigSessStringcfg("oss", "accesskeyid")
+	GlobalOssAccessKeyId, err = beego_utils.HelperConfigSessStringcfg("oss", "accesskeyid")
 	if err != nil {
 		GlobalOssAccessKeyId = "LTAIwOPiTFbYNtMf"
 	}
 
 	//
-	GlobalOssAccessKeySecret, err = HelperConfigSessStringcfg("oss", "accesskeysecret")
+	GlobalOssAccessKeySecret, err = beego_utils.HelperConfigSessStringcfg("oss", "accesskeysecret")
 	if err != nil {
 		GlobalOssAccessKeySecret = "rYGRsbjIhoGQbUOl7YdbD7gDqM3zV4"
 	}
 
 	//
-	GlobalOssBucket, err = HelperConfigSessStringcfg("oss", "bucket")
+	GlobalOssBucket, err = beego_utils.HelperConfigSessStringcfg("oss", "bucket")
 	if err != nil {
 		GlobalOssBucket = "smwyo"
 	}

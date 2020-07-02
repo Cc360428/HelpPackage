@@ -3,7 +3,7 @@ package mysql_help
 import (
 	"database/sql"
 	"fmt"
-	"github.com/Cc360428/HelpPackage/UtilsHelp/logs"
+	"github.com/Cc360428/HelpPackage/utils/logs"
 )
 
 // Trans
