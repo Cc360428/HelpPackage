@@ -4,9 +4,7 @@ go 1.13
 
 require (
 	github.com/OwnLocal/goes v1.0.0
-	github.com/aliyun/aliyun-oss-go-sdk v2.0.5+incompatible
 	github.com/astaxie/beego v1.12.0
-	github.com/baiyubin/aliyun-sts-go-sdk v0.0.0-20180326062324-cfa1a18b161f // indirect
 	github.com/cloudflare/golz4 v0.0.0-20150217214814-ef862a3cdc58
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/gin-gonic/gin v1.5.0
