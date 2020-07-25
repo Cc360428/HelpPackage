@@ -1,0 +1,385 @@
+basePath: /
+definitions:
+  controllers.CheckEmailCodeRequest:
+    properties:
+      code:
+        type: string
+      email:
+        type: string
+    required:
+    - code
+    - email
+    type: object
+  controllers.CheckNameRequest:
+    properties:
+      name:
+        type: string
+    required:
+    - name
+    type: object
+  controllers.LoginRequest:
+    properties:
+      name_and_email:
+        type: string
+      password:
+        type: string
+    required:
+    - name_and_email
+    - password
+    type: object
+  controllers.RegRequest:
+    properties:
+      email:
+        type: string
+      name:
+        type: string
+      password:
+        type: string
+    required:
+    - email
+    - name
+    - password
+    type: object
+  controllers.RetrievePasswordRequest:
+    properties:
+      email:
+        type: string
+      email_code:
+        type: string
+      password:
+        type: string
+    type: object
+  controllers.SendVerificationCodeRequest:
+    properties:
+      email:
+        type: string
+    required:
+    - email
+    type: object
+  user.GetUserInfoRequest:
+    properties:
+      created_at:
+        type: integer
+      email:
+        description: 邮箱
+        type: string
+      images_url:
+        description: 头像
+        type: string
+      last_logon_time:
+        description: 最后登入时间
+        type: integer
+      name:
+        type: string
+      sex:
+        description: 性别
+        type: integer
+    type: object
+  user.UpdatePasswordRequest:
+    properties:
+      new_password:
+        type: string
+      password:
+        type: string
+    required:
+    - new_password
+    - password
+    type: object
+  user.UpdateRequest:
+    properties:
+      email:
+        description: 邮箱
+        type: string
+      images_url:
+        description: 头像
+        type: string
+      name:
+        description: 名字
+        type: string
+      sex:
+        description: 性别
+        type: integer
+    type: object
+  utils.Response:
+    properties:
+      code:
+        type: integer
+      data:
+        type: object
+      message:
+        type: object
+    type: object
+info:
+  contact:
+    email: li_chao_cheng@163.com
+    name: Cc360428
+  description: gin
+  license: {}
+  title: cc_app
+  version: 0.0.1
+paths:
+  /login:
+    post:
+      parameters:
+      - description: 请求参数
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/controllers.LoginRequest'
+      responses:
+        "200":
+          description: '{"code": 0, "data": "",  "message": "" }'
+          schema:
+            $ref: '#/definitions/utils.Response'
+        "400":
+          description: '{"code": -1, "data": "",  "message": "" }'
+          schema:
+            $ref: '#/definitions/utils.Response'
+      summary: 用户登录
+      tags:
+      - 用户注册与登录
+  /ping:
+    get:
+      responses:
+        "200":
+          description: '{"code": 0, "data": "",  "message": "" }'
+          schema:
+            $ref: '#/definitions/utils.Response'
+        "400":
+          description: '{"code": -1, "data": "",  "message": "" }'
+          schema:
+            $ref: '#/definitions/utils.Response'
+      summary: ping(测试是否ok)
+      tags:
+      - Public
+  /reg:
+    post:
+      parameters:
+      - description: 请求参数
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/controllers.RegRequest'
+      responses:
+        "200":
+          description: '{"code": 0, "data": "",  "message": "" }'
+          schema:
+            $ref: '#/definitions/utils.Response'
+        "400":
+          description: '{"code": -1, "data": "",  "message": "" }'
+          schema:
+            $ref: '#/definitions/utils.Response'
+      summary: 注册
+      tags:
+      - 用户注册与登录
+  /reg/check_email_code:
+    post:
+      parameters:
+      - description: 请求参数
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/controllers.CheckEmailCodeRequest'
+      responses:
+        "200":
+          description: '{"code": 0, "data": "",  "message": "" }'
+          schema:
+            $ref: '#/definitions/utils.Response'
+        "400":
+          description: '{"code": -1, "data": "",  "message": "" }'
+          schema:
+            $ref: '#/definitions/utils.Response'
+      summary: 校验邮箱验证码是否正确
+      tags:
+      - 用户注册与登录
+  /reg/check_name:
+    post:
+      parameters:
+      - description: 请求参数
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/controllers.CheckNameRequest'
+      responses:
+        "200":
+          description: '{"code": 0, "data": "",  "message": "" }'
+          schema:
+            $ref: '#/definitions/utils.Response'
+        "400":
+          description: '{"code": -1, "data": "",  "message": "" }'
+          schema:
+            $ref: '#/definitions/utils.Response'
+      summary: 校验名字是否存在
+      tags:
+      - 用户注册与登录
+  /reg/send_email_code:
+    post:
+      parameters:
+      - description: 请求参数
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/controllers.SendVerificationCodeRequest'
+      responses:
+        "200":
+          description: '{"code": 0, "data": "",  "message": "" }'
+          schema:
+            $ref: '#/definitions/utils.Response'
+        "400":
+          description: '{"code": -1, "data": "",  "message": "" }'
+          schema:
+            $ref: '#/definitions/utils.Response'
+      summary: 注册时发送验证码
+      tags:
+      - 用户注册与登录
+  /retrieve_password:
+    post:
+      parameters:
+      - description: 请求参数
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/controllers.RetrievePasswordRequest'
+      responses:
+        "200":
+          description: '{"code": 0, "data": "",  "message": "Request successful" }'
+          schema:
+            $ref: '#/definitions/utils.Response'
+      security:
+      - Authorization: []
+      summary: 找回密码
+      tags:
+      - 用户注册与登录
+  /send_email_code:
+    post:
+      parameters:
+      - description: 请求参数
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/controllers.SendVerificationCodeRequest'
+      responses:
+        "200":
+          description: '{"code": 0, "data": "",  "message": "" }'
+          schema:
+            $ref: '#/definitions/utils.Response'
+        "400":
+          description: '{"code": -1, "data": "",  "message": "" }'
+          schema:
+            $ref: '#/definitions/utils.Response'
+      summary: 找回密码发送验证码
+      tags:
+      - 用户注册与登录
+  /tool/upload:
+    post:
+      consumes:
+      - multipart/form-data
+      description: 上传文件
+      parameters:
+      - description: 选择文件
+        in: formData
+        name: file
+        required: true
+        type: file
+      responses:
+        "200":
+          description: '{"code": 0, "data": "",  "message": "" }'
+          schema:
+            $ref: '#/definitions/utils.Response'
+        "400":
+          description: '{"code": -1, "data": "",  "message": "" }'
+          schema:
+            $ref: '#/definitions/utils.Response'
+      summary: 上传文件
+      tags:
+      - Tools
+  /user/info:
+    post:
+      responses:
+        "200":
+          description: '{"code": 0, "data": "",  "message": "" }'
+          schema:
+            $ref: '#/definitions/user.GetUserInfoRequest'
+        "400":
+          description: '{"code": -1, "data": "",  "message": "" }'
+          schema:
+            $ref: '#/definitions/utils.Response'
+      security:
+      - Authorization: []
+      summary: 获取用户信息
+      tags:
+      - User interface
+  /user/logout:
+    post:
+      responses:
+        "200":
+          description: '{"code": 0, "data": "",  "message": "" }'
+          schema:
+            $ref: '#/definitions/utils.Response'
+      security:
+      - Authorization: []
+      summary: 用户登出
+      tags:
+      - 用户注册与登录
+  /user/update:
+    post:
+      parameters:
+      - description: 请求参数
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/user.UpdateRequest'
+      responses:
+        "200":
+          description: '{"code": 0, "data": "",  "message": "" }'
+          schema:
+            $ref: '#/definitions/utils.Response'
+        "400":
+          description: '{"code": -1, "data": "",  "message": "" }'
+          schema:
+            $ref: '#/definitions/utils.Response'
+      security:
+      - Authorization: []
+      summary: 修改用户信息
+      tags:
+      - User interface
+  /user/update_password:
+    post:
+      parameters:
+      - description: 修改密码之后需要重新登录
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/user.UpdatePasswordRequest'
+      responses:
+        "200":
+          description: '{"code": -6, "data": "",  "message": "" }'
+          schema:
+            $ref: '#/definitions/utils.Response'
+        "400":
+          description: '{"code": -1, "data": "",  "message": "" }'
+          schema:
+            $ref: '#/definitions/utils.Response'
+      security:
+      - Authorization: []
+      summary: 修改密码
+      tags:
+      - User interface
+schemes:
+- http
+- https
+securityDefinitions:
+  Authorization:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

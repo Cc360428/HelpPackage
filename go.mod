@@ -4,10 +4,11 @@ go 1.13
 
 require (
 	github.com/OwnLocal/goes v1.0.0
+	github.com/alecthomas/template v0.0.0-20190718012654-fb15b899a751
 	github.com/astaxie/beego v1.12.0
 	github.com/cloudflare/golz4 v0.0.0-20150217214814-ef862a3cdc58
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
-	github.com/gin-gonic/gin v1.5.0
+	github.com/gin-gonic/gin v1.6.2
 	github.com/go-kratos/kratos v0.5.0
 	github.com/gogo/protobuf v1.3.1
 	github.com/goinggo/mapstructure v0.0.0-20140717182941-194205d9b4a9
@@ -19,6 +20,7 @@ require (
 	github.com/onsi/gomega v1.8.1 // indirect
 	github.com/shiena/ansicolor v0.0.0-20151119151921-a422bbe96644
 	github.com/skip2/go-qrcode v0.0.0-20200617195104-da1b6568686e
+	github.com/swaggo/swag v1.6.7
 	github.com/xuanbo/requests v0.0.2
 	google.golang.org/grpc v1.30.0
 	gopkg.in/alexcesaro/quotedprintable.v3 v3.0.0-20150716171945-2caba252f4dc // indirect
