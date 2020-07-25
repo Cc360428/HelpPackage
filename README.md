@@ -2,8 +2,14 @@
 [![GoDoc](https://godoc.org/github.com/go-redis/redis?status.svg)](https://pkg.go.dev/github.com/Cc360428/HelpPackage?tab=doc)      
 [Reference](https://pkg.go.dev/github.com/Cc360428/HelpPackage?tab=doc)  
 golang Development Kit
-## 目录说明
+- 添加使用
+```go
+go get github.com/Cc360428/HelpPackage
 ```
+## 目录说明
+```shell
+.
+├── LICENSE
 ├── README.md
 ├── beego_utils
 │   ├── request_helper.go
@@ -28,6 +34,7 @@ golang Development Kit
     ├── excel.go
     ├── hs_token.go
     ├── hs_token_test.go
+    ├── image
     ├── ip.go
     ├── ip_test.go
     ├── json.go
@@ -45,13 +52,15 @@ golang Development Kit
     ├── snowflake.go
     ├── snowflake_test.go
     ├── string.go
+    ├── swagger
     ├── time.go
     ├── time_test.go
     ├── token
     ├── util.go
     ├── util_test.go
     └── uuid
-13 directories, 34 files
+
+15 directories, 35 files
 ```
 ### beego_utils
 >beego web 框架工具集成
