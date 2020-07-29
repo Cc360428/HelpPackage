@@ -1,3 +1,4 @@
+// beego 获取参数
 package beego_utils
 
 import (
@@ -12,9 +13,7 @@ import (
 	"time"
 )
 
-/**
-*@param 从req parameter  获取参数
-**/
+// Get 获取int64
 func HelperGetInt64Param(this *beego.Controller, para string) int64 {
 	pathint, err := this.GetInt64(para, 0)
 	if err != nil {
@@ -24,9 +23,7 @@ func HelperGetInt64Param(this *beego.Controller, para string) int64 {
 	return pathint
 }
 
-/**
-*@param 从req parameter  获取参数
-**/
+// Get 获取int
 func HelperGetIntParam(this *beego.Controller, para string) int {
 	pathint, err := this.GetInt(para, 0)
 	if err != nil {
@@ -36,9 +33,7 @@ func HelperGetIntParam(this *beego.Controller, para string) int {
 	return pathint
 }
 
-/**
-*@param 从req parameter  获取 string 参数
-**/
+// Get 获取string
 func HelperGetStringParam(this *beego.Controller, para string) string {
 	pathstr := this.GetString(para)
 	if pathstr == "" {
@@ -47,9 +42,7 @@ func HelperGetStringParam(this *beego.Controller, para string) string {
 	return pathstr
 }
 
-/**
-*@param 从req path  获取参数
-**/
+// Get 获取string url/:
 func HelperGetPath(this *beego.Controller, path string) string {
 	paths := this.GetString(":" + path)
 	if paths == "" {
@@ -58,14 +51,12 @@ func HelperGetPath(this *beego.Controller, path string) string {
 	return paths
 }
 
-/**
-* @param 从req body  转换 数据格式
-**/
+// Post 获取json
 func HelperConvectBody(this *beego.Controller, out interface{}) {
 	var err error
 	result := ResultInit()
 	if this == nil || out == nil {
-		err = fmt.Errorf("Post Body为空")
+		err = fmt.Errorf("PostBody为空")
 		result.Msg = err.Error()
 		this.Data["json"] = result
 		this.ServeJSON()
@@ -81,10 +72,9 @@ func HelperConvectBody(this *beego.Controller, out interface{}) {
 	}
 }
 
-/*
-*    从配置文件中获取 session 和key 对应的 配置string
-**/
+//  获取 session key string
 func HelperConfigSessStringcfg(sessionName string, configName string) (cfg string, err error) {
+	// 从配置文件中获取 session 和key 对应的 配置string
 	cfgSess, err := beego.AppConfig.GetSection(strings.ToLower(sessionName))
 	if err != nil {
 		logs.Error("session (%v) err :: %v", err.Error())
@@ -118,9 +108,7 @@ func HelperConvertMac(mac *string) (err error) {
 	return nil
 }
 
-/**
-* @param  转换 数据格式 ， in 和 out 是不同的 数据类型
-**/
+//
 func HelperConvetInterface(in interface{}, out interface{}) (err error) {
 	inBytes, err := json.Marshal(in)
 	if err != nil {
@@ -129,9 +117,7 @@ func HelperConvetInterface(in interface{}, out interface{}) (err error) {
 	return json.Unmarshal(inBytes, out)
 }
 
-/**
-*
-**/
+//
 func HelperTimeGetDaySection() (startTime time.Time, endTime time.Time, err error) {
 
 	today := time.Now()
@@ -167,9 +153,6 @@ type intfInfo struct {
 	Ipv4       []string
 }
 
-/*
-*
-**/
 func HelperGetNetworkInfo() ([]*Network, error) {
 	var nws []*Network
 	intf, err := net.Interfaces()
@@ -212,9 +195,6 @@ func HelperGetNetworkInfo() ([]*Network, error) {
 	return nws, nil
 }
 
-/**
-*
-**/
 func HelperDealMac(mac string) (macaddr string) {
 	macaddr = mac
 	macaddr = strings.Replace(macaddr, ":", "", 5)
@@ -255,9 +235,7 @@ func HelperGetNetwork() (macaddr string, ip string, err error) {
 	return macaddr, ip, err
 }
 
-/**
-*    获取文件 扩展名
-**/
+//  获取文件 扩展名
 func HelperFileSuffix(filename string) (suffix string) {
 	fileArray := strings.Split(filename, ".")
 	if len(fileArray) < 1 {
@@ -266,9 +244,7 @@ func HelperFileSuffix(filename string) (suffix string) {
 	return fileArray[len(fileArray)-1]
 }
 
-/*
-*	 获取 md5 加密字符串， 有盐值
-**/
+// 获取 md5 加密字符串， 有盐值
 func HelperMd5andSalt(srcStr string, salt string) (md5Str string) {
 	m5 := md5.New()
 	m5.Write([]byte("Mi Ma"))
@@ -278,40 +254,14 @@ func HelperMd5andSalt(srcStr string, salt string) (md5Str string) {
 	return md5Str
 }
 
-/*
-*    时间转字符串
-**/
+// 时间转字符串
 const base_format = "2006-01-02 15:04:05"
 
 func HelperDate2Str(timeIn time.Time) string {
 	return timeIn.Format(base_format)
 }
 
-/*
-*    时间转字符串
-**/
+// 时间转字符串
 func HelperStr2Date(str_time string) (time.Time, error) {
 	return time.Parse(base_format, str_time)
 }
-
-/*
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- */

@@ -1,3 +1,4 @@
+// mysql
 package mysql_help
 
 import (
@@ -6,7 +7,7 @@ import (
 	"github.com/Cc360428/HelpPackage/utils/logs"
 )
 
-// Trans
+// Trans 事务
 func Affair(db *sql.DB, txFunc func(*sql.Tx) error) (err error) {
 	tx, err := db.Begin()
 	if err != nil {

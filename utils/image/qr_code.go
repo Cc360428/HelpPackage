@@ -1,3 +1,4 @@
+// 二维码
 package image
 
 import (
