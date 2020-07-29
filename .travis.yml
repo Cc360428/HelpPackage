@@ -7,3 +7,5 @@ script:
   - go mod tidy
   - go build
   - ./HelpPackage
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
