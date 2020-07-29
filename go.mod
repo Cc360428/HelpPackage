@@ -3,11 +3,11 @@ module github.com/Cc360428/HelpPackage
 go 1.14
 
 require (
-	github.com/OwnLocal/goes v1.0.0
 	github.com/alecthomas/template v0.0.0-20190718012654-fb15b899a751
 	github.com/astaxie/beego v1.12.2
 	github.com/cloudflare/golz4 v0.0.0-20150217214814-ef862a3cdc58
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
+	github.com/elastic/go-elasticsearch/v6 v6.8.5
 	github.com/gin-gonic/gin v1.6.3
 	github.com/go-kratos/kratos v0.5.0
 	github.com/gogo/protobuf v1.3.1
