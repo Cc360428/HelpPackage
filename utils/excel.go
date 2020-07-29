@@ -1,6 +1,6 @@
 package utils
 
-import "github.com/astaxie/beego/logs"
+import "github.com/Cc360428/HelpPackage/utils/logs"
 
 //Excel导出
 /**

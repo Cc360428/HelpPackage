@@ -1,7 +1,7 @@
 package redis
 
 import (
-	"github.com/astaxie/beego/logs"
+	"github.com/Cc360428/HelpPackage/utils/logs"
 	"gopkg.in/redis.v5"
 	"os"
 	"strconv"
@@ -85,7 +85,7 @@ func (client *Client) GetHashString(hashKey, key string) (ret string, err error)
 
 /**
 hash key in key get value (int64)
- */
+*/
 func (client *Client) GetHashInt64(hashKey string, key string) (ret int64, err error) {
 	retStr, err := client.GetHashString(hashKey, key)
 	if err != nil {

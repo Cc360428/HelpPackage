@@ -1,7 +1,7 @@
-package main
+// Cc 帮助
+package HelpPackages
 
-import "github.com/Cc360428/HelpPackage/utils/logs"
+// Cc
+func Cc() {
 
-func main() {
-	logs.Info("hello HelpPackage")
 }

@@ -1,7 +1,7 @@
 package utils
 
 import (
-	"github.com/astaxie/beego/logs"
+	"github.com/Cc360428/HelpPackage/utils/logs"
 	"gopkg.in/gomail.v2"
 )
 
