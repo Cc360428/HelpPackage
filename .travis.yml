@@ -8,4 +8,4 @@ script:
   - go build
   - ./HelpPackage
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
+  - bash <(curl -s https://codecov.io/bash) -t 9ccb3c36-034f-490e-959e-bd299eaf2ebe
