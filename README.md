@@ -1,6 +1,8 @@
 # HelpPackage
-[![GoDoc](https://godoc.org/github.com/go-redis/redis?status.svg)](https://pkg.go.dev/github.com/Cc360428/HelpPackage?tab=doc)      
+[![GoDoc](https://godoc.org/github.com/go-redis/redis?status.svg)](https://pkg.go.dev/github.com/Cc360428/HelpPackage?tab=doc)
+[![Build Status](https://travis-ci.com/Cc360428/HelpPackage.svg?branch=master)](https://travis-ci.com/Cc360428/HelpPackage)      
 [Reference](https://pkg.go.dev/github.com/Cc360428/HelpPackage?tab=doc)  
+
 golang Development Kit
 - 添加使用
 ```go
