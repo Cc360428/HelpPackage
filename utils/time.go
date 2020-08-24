@@ -49,7 +49,9 @@ func WeekOneAndWeekSevenTime() (one int64, seven int64) {
 }
 
 func DateDayFormat() string {
-	timeStr := time.Now().Format("2006-01-02 08:02")
+	//timeStr := time.Now().Format("2006-01-02 15:04:05.000")
+	//timeStr := time.Now().Format("2006-01-02 15:04:05.000")
+	timeStr := time.Now().Format("2006-01-02 15:04:05")
 	return timeStr
 }
 
@@ -118,7 +120,7 @@ func MonthlyTotal(year int, month int) (days int) {
 	return
 }
 
-// 标准时间格式(秒)转换为int64时间戳 
+// 标准时间格式(秒)转换为int64时间戳
 func StringToInt64(s string) (t int64) {
 	datetime := "2015-01-01 00:00:00" //待转化为时间戳的字符串
 	loc, _ := time.LoadLocation(s)

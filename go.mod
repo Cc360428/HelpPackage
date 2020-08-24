@@ -16,6 +16,7 @@ require (
 	github.com/golang/protobuf v1.4.2
 	github.com/json-iterator/go v1.1.10
 	github.com/nfnt/resize v0.0.0-20180221191011-83c6a9932646
+	github.com/robfig/cron/v3 v3.0.1
 	github.com/shiena/ansicolor v0.0.0-20151119151921-a422bbe96644
 	github.com/skip2/go-qrcode v0.0.0-20200617195104-da1b6568686e
 	github.com/swaggo/swag v1.6.7
