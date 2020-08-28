@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	_ "encoding/json"
 	"fmt"
+	beego_utils "github.com/Cc360428/HelpPackage/beego"
 	"io/ioutil"
 	_ "io/ioutil"
 )
@@ -29,7 +30,7 @@ func SwaggerJson(swagger string) (a map[string]interface{}) {
 
 func GetOpId(vv interface{}) (ret interface{}) {
 	dd := make(map[string]interface{})
-	_ = beego.HelperConvetInterface(vv, &dd)
+	_ = beego_utils.HelperConvetInterface(vv, &dd)
 	for kk, value := range dd {
 		if kk == "operationId" {
 			ret = value
