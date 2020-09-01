@@ -10,9 +10,9 @@ func EmailCode(email string) (code string, err error) {
 	logs.Info("输入的邮箱是：", email)
 	code = GenValidateCode(6)
 	m := gomail.NewMessage()
-	m.SetAddressHeader("From", "1097125645@qq.com", "Smart") // 发件人
-	m.SetHeader("To", m.FormatAddress(email, "user"))        // 收件人
-	m.SetHeader("Subject", "EmailCode")                      // 主题
+	m.SetAddressHeader("From", "", "Smart")           // 发件人
+	m.SetHeader("To", m.FormatAddress(email, "user")) // 收件人
+	m.SetHeader("Subject", "EmailCode")               // 主题
 	HTML := "<head>" +
 		"<base target='_blank' />" +
 		"<style type='text/css'>::-webkit-scrollbar{ display: none; }</style>" +
@@ -68,7 +68,7 @@ func EmailCode(email string) (code string, err error) {
 		"	</table>" +
 		"	</body>"
 	m.SetBody("text/html", HTML)
-	d := gomail.NewDialer("smtp.qq.com", 465, "1097125645@qq.com", "xwmjrhrheymsiagh") // 发送邮件服务器、端口、发件人账号、发件人密码
+	d := gomail.NewDialer("smtp.qq.com", 465, "", "") // 发送邮件服务器、端口、发件人账号、发件人密码
 	if err := d.DialAndSend(m); err != nil {
 		logs.Error(err.Error())
 		return code, err
@@ -79,9 +79,9 @@ func EmailCode(email string) (code string, err error) {
 func Reply(email, title, content string) (err error) {
 	logs.Info("输入的邮箱是：", email)
 	m := gomail.NewMessage()
-	m.SetAddressHeader("From", "1097125645@qq.com", "li_chao_cheng.top") // 发件人
-	m.SetHeader("To", m.FormatAddress(email, "user"))                    // 收件人
-	m.SetHeader("Subject", "li_chao_cheng.top反馈")                        // 主题
+	m.SetAddressHeader("From", "", "")                // 发件人
+	m.SetHeader("To", m.FormatAddress(email, "user")) // 收件人
+	m.SetHeader("Subject", "")                        // 主题
 	HTML := "<head>" +
 		"<base target='_blank' />" +
 		"<style type='text/css'>::-webkit-scrollbar{ display: none; }</style>" +
@@ -135,7 +135,7 @@ func Reply(email, title, content string) (err error) {
 		"	</table>" +
 		"	</body>"
 	m.SetBody("text/html", HTML)
-	d := gomail.NewDialer("smtp.qq.com", 465, "1097125645@qq.com", "xwmjrhrheymsiagh") // 发送邮件服务器、端口、发件人账号、发件人密码
+	d := gomail.NewDialer("smtp.qq.com", 465, "", "") // 发送邮件服务器、端口、发件人账号、发件人密码
 	if err := d.DialAndSend(m); err != nil {
 		logs.Error(err.Error())
 		return err
