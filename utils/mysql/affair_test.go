@@ -20,6 +20,6 @@ func TestAffair(t *testing.T) {
 		return nil
 	})
 	if err != nil {
-		logs.Info("Affair update 错误",err.Error())
+		logs.Info("Affair update 错误", err.Error())
 	}
 }

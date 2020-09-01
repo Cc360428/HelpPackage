@@ -1,6 +1,7 @@
 package gin_utils
 
 import (
+	"github.com/Cc360428/HelpPackage/utils/logs"
 	"github.com/gin-gonic/gin"
 	"testing"
 	"time"
@@ -13,6 +14,13 @@ func TestNewRateLimiter(t *testing.T) {
 		return ctx.Request.Header.Get("Authorization"), nil
 	})
 	router.POST("/update_password", reachLimiter.Middleware(), UpdatePassword)
+	go func() {
+		err := router.Run(":38080")
+		if err != nil {
+			logs.Error(err.Error())
+		}
+	}()
+	time.Sleep(time.Second * 3)
 }
 
 func UpdatePassword(context *gin.Context) {

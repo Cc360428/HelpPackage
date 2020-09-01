@@ -1,0 +1,6 @@
+HttpPort = 8080
+host = "60.205.176.110"
+port = "8836"
+user = "root"
+password = "Cc@123q456"
+database = "cc"

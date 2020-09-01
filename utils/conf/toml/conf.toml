@@ -1,0 +1,13 @@
+# id
+ID = 3
+# name
+Name = "TigerwolfC"
+# weight
+Weight = 58
+# books
+Books = ["Golang", "C++", "Python"]
+Sex = true
+#friend Friend都可以
+[friend]
+Age = 28
+Name = "chen_peggy"

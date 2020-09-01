@@ -4,6 +4,7 @@ import (
 	"github.com/Cc360428/HelpPackage/utils"
 	"github.com/Cc360428/HelpPackage/utils/logs"
 	"github.com/robfig/cron/v3"
+	"time"
 )
 
 func Task() {
@@ -12,5 +13,5 @@ func Task() {
 		logs.Info(utils.DateDayFormat())
 	})
 	c.Start()
-	select {}
+	time.Sleep(time.Second * 3)
 }

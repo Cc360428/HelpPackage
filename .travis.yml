@@ -2,10 +2,21 @@
 language:
   golang # 指明使用的语言
 go:          # 语言版本号
-  - "1.13"   # 默认使用最新版本,注意，需要 "1.10" 版本的时候必须表示为字符串形式，如果写成 1.10 则会使用 1.1 版本;x表示对应前缀的最新版本
-script:
+  - "1.14.x"   # 默认使用最新版本,注意，需要 "1.10" 版本的时候必须表示为字符串形式，如果写成 1.10 则会使用 1.1 版本;x表示对应前缀的最新版本
+  - "tip"
+notifications:
+  email:
+    recipients:
+      - li_chao_cheng@163.com
+      - li_chao_cheng@126.com
+    on_success: always # default: change
+    on_failure: always # default: always
+before_install:
   - go mod tidy
+  - go mod vendor
+script:
   - go build
   - ./HelpPackage
 after_success:
-  - bash <(curl -s https://codecov.io/bash) -t 9ccb3c36-034f-490e-959e-bd299eaf2ebe
+  - go test ./... -race -coverprofile=coverage.txt -covermode=atomic -v
+  - bash <(curl -s https://codecov.io/bash)

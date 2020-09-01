@@ -1,0 +1,5 @@
+host: 127.0.0.1
+port: 3306
+user: root # 注释
+password: 123456
+dbname: test

@@ -9,13 +9,11 @@ func TestToInt64(t *testing.T) {
 	type args struct {
 		value interface{}
 	}
-	tests := []struct {
+	var tests []struct {
 		name    string
 		args    args
 		wantD   int64
 		wantErr bool
-	}{
-		// TODO: Add test cases.
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
