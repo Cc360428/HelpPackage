@@ -1,10 +1,15 @@
 # HelpPackage
+[![Language](https://img.shields.io/badge/Language-Go-blue.svg)](https://golang.org/)
+[![v1.14](https://img.shields.io/github/go-mod/go-version/Cc360428/HelpPackage)](https://github.com/Cc360428/HelpPackage)
+[![stars](https://img.shields.io/github/stars/Cc360428/HelpPackage?style=social)](https://github.com/Cc360428/HelpPackage/stargazers)
+[![pull](https://img.shields.io/github/issues-pr/Cc360428/HelpPackage)](https://github.com/Cc360428/HelpPackage)
+[![Download](https://img.shields.io/github/downloads/Cc360428/HelpPackage/total)](https://github.com/Cc360428/HelpPackage)
 [![GoDoc](https://godoc.org/github.com/go-redis/redis?status.svg)](https://pkg.go.dev/github.com/Cc360428/HelpPackage?tab=doc)
 [![Build Status](https://travis-ci.com/Cc360428/HelpPackage.svg?branch=master)](https://travis-ci.com/Cc360428/HelpPackage)
 [![codecov](https://codecov.io/gh/Cc360428/HelpPackage/branch/master/graph/badge.svg)](https://codecov.io/gh/Cc360428/HelpPackage)   
 golang Development Kit
 - 添加使用
-```go
+```shell
 go get github.com/Cc360428/HelpPackage
 ```
 ## 目录说明
