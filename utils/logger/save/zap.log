@@ -1,0 +1,3 @@
+{"level":"debug","t":"2020-9-19 22:30:6 ","caller":"logger/main.go:56","msg":"sadf","app":"test"}
+{"level":"info","t":"2020-9-19 22:30:6 ","caller":"logger/main.go:57","msg":"sadf","app":"test"}
+{"level":"error","t":"2020-9-19 22:30:6 ","caller":"logger/main.go:58","msg":"error","app":"test","trace":"main.main\n\t/Users/chaochengli/gomod/Cc360428/HelpPackage/utils/logger/main.go:58\nruntime.main\n\t/usr/local/go/src/runtime/proc.go:203"}
