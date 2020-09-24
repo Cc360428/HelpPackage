@@ -9,7 +9,6 @@ require (
 	github.com/alecthomas/template v0.0.0-20190718012654-fb15b899a751
 	github.com/andybalholm/brotli v1.0.1-0.20200619015827-c3da72aa01ed // indirect
 	github.com/astaxie/beego v1.12.2
-	github.com/blinkbean/dingtalk v0.0.0-20200822153748-8cf931f926ab
 	github.com/cloudflare/golz4 v0.0.0-20150217214814-ef862a3cdc58
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/elastic/go-elasticsearch/v6 v6.8.5
