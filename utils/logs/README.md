@@ -7,7 +7,7 @@
     if err != nil {
         logs.Error(err.Error())
     }
-    err = logs.SetLogger(logs.AdapterMultiFile, `{"filename":"`+uploadDir+`/shareAIOServer.log","separate":["emergency", "alert", "critical", "error", "warning", "notice", "info", "debug"]}`)
+    err = logs.SetLogger(logs.AdapterMultiFile, `{"filename":"`+uploadDir+`/33.log","separate":["emergency", "alert", "critical", "error", "warning", "notice", "info", "debug"]}`)
     if err != nil {
         logs.Error("日志输出错误!", err.Error())
     }
