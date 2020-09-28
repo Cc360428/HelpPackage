@@ -28,6 +28,7 @@ require (
 	github.com/kataras/iris/v12 v12.1.8
 	github.com/moul/http2curl v1.0.0 // indirect
 	github.com/nfnt/resize v0.0.0-20180221191011-83c6a9932646
+	github.com/olivere/elastic/v7 v7.0.20
 	github.com/robfig/cron/v3 v3.0.1
 	github.com/sergi/go-diff v1.1.0 // indirect
 	github.com/shiena/ansicolor v0.0.0-20200904210342-c7312218db18
