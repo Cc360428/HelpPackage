@@ -1,6 +1,7 @@
 package utils
 
 import (
+	"fmt"
 	"reflect"
 	"testing"
 )
@@ -232,4 +233,10 @@ func TestConvertInterfaceToMap(t *testing.T) {
 			}
 		})
 	}
+}
+
+func TestDuplicateRemoval(t *testing.T) {
+	array := []int64{1, 2, 3, 4, 1, 6, 2}
+	removal := DuplicateRemoval(array)
+	fmt.Println(removal)
 }

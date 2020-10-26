@@ -104,8 +104,8 @@ func Encryption(password string, salt string) string {
 
 //数组去重
 func RemoveDuplicatesAndEmpty(a []string) (ret []string) {
-	a_len := len(a)
-	for i := 0; i < a_len; i++ {
+	aLen := len(a)
+	for i := 0; i < aLen; i++ {
 		if (i > 1 && a[i-1] == a[i]) || len(a[i]) == 0 {
 			continue
 		}

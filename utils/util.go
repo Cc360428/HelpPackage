@@ -135,3 +135,16 @@ func Equals(a, b interface{}) (bool, error) {
 		return false, nil
 	}
 }
+
+// int64
+func DuplicateRemoval(a []int64) []int64 {
+	var response []int64
+	tmp := make(map[int64]bool)
+	for _, value := range a {
+		if _, ok := tmp[value]; !ok {
+			response = append(response, value)
+			tmp[value] = true
+		}
+	}
+	return response
+}
