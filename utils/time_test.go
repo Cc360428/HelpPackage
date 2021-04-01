@@ -5,7 +5,6 @@ import (
 	"testing"
 )
 
-
-func TestDateDay(t *testing.T){
+func TestDateDay(t *testing.T) {
 	fmt.Println(DateDay())
 }

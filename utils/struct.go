@@ -1,6 +1,9 @@
 package utils
 
-import "fmt"
+import (
+	"fmt"
+	"strconv"
+)
 
 type RedisUser struct {
 	Id     int64  `json:"id"`
@@ -13,7 +16,7 @@ func RedisGo() []RedisUser {
 	for i = 1; i < 10; i++ {
 		user = append(user, RedisUser{
 			Id:     i,
-			PropId: string(i) + "lcc-redis-ligo",
+			PropId: strconv.FormatInt(i, 10) + "lcc-redis-ligo",
 		})
 	}
 	return user

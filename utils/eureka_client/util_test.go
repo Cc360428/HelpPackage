@@ -5,6 +5,6 @@ import (
 	"testing"
 )
 
-func TestGetLocalIP(t *testing.T){
+func TestGetLocalIP(t *testing.T) {
 	fmt.Println(GetLocalIP())
 }

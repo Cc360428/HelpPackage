@@ -9,6 +9,7 @@ import (
 // Cc
 func Cc() {
 	logs.Info("Hello 世界")
+	logs.Info("Version: v0.0.8")
 }
 
 func main() {

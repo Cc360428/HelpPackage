@@ -34,10 +34,10 @@ func Test(t *testing.T) {
 }
 
 type Student struct {
-	Name   string `bson: "name"`
-	Age    int    `bson: "age"`
-	Sid    string `bson: "sid"`
-	Status int    `bson: "status"`
+	Name   string `bson:"name"`
+	Age    int    `bson:"age"`
+	Sid    string `bson:"sid"`
+	Status int    `bson:"status"`
 }
 
 type Per struct {

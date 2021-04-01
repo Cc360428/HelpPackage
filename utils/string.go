@@ -37,9 +37,9 @@ func RandomString(length int) string {
 		if t < 10 {
 			result = append(result, strconv.Itoa(rand.Intn(10)))
 		} else if t < 36 {
-			result = append(result, string(rand.Intn(26)+65))
+			result = append(result, string(rune(rand.Intn(26)+65)))
 		} else {
-			result = append(result, string(rand.Intn(26)+97))
+			result = append(result, string(rune(rand.Intn(26)+97)))
 		}
 	}
 	return strings.Join(result, "")
@@ -78,11 +78,11 @@ func Substr(str string, start, length int) string {
 //随机取出一定长度的随机数字
 func GenValidateCode(width int) string {
 	str := "0123456789"
-	bytes := []byte(str)
-	result := []byte{}
+	b := []byte(str)
+	var result []byte
 	r := rand.New(rand.NewSource(time.Now().UnixNano()))
 	for i := 0; i < width; i++ {
-		result = append(result, bytes[r.Intn(len(bytes))])
+		result = append(result, b[r.Intn(len(b))])
 	}
 	return string(result)
 }

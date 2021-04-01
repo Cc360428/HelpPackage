@@ -24,7 +24,6 @@ func TestGetExternal(t *testing.T) {
 	fmt.Println(GetExternal())
 }
 
-
 func TestGetLocalIPAddress(t *testing.T) {
 	g := GetLocalIPAddress()
 	logs.Info(g)

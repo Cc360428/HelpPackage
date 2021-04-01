@@ -6,7 +6,7 @@ import (
 	"testing"
 )
 
-// 
+//
 func TestCreateToken(t *testing.T) {
 	tokenStruct := new(token.Token)
 	tokenStruct.Name = "lcc"
