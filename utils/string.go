@@ -4,8 +4,10 @@ package utils
 import (
 	"bytes"
 	"crypto/md5"
+	"encoding/json"
 	"fmt"
 	"io"
+	"math"
 	"math/rand"
 	"strconv"
 	"strings"
@@ -127,4 +129,99 @@ func Intercept(parameter string, condition string) string {
 func SplitUtil(parameter string, condition string) []string {
 	str := strings.Split(parameter, condition)
 	return str
+}
+
+// StrToInt32 string转到int32
+func StrToInt32(src string) int32 {
+	dst, err := strconv.Atoi(src)
+	if err != nil {
+		return 0
+	}
+	return int32(dst)
+}
+
+// StrToInt string转到int
+func StrToInt(src string) int {
+	strInt, err := strconv.Atoi(src)
+	if err != nil {
+		return 0
+	}
+	return strInt
+}
+
+// Int32ToStr int32转到string
+func Int32ToStr(src int32) string {
+	return strconv.Itoa(int(src))
+}
+
+// IntToStr int转到string
+func IntToStr(i int) string {
+	return strconv.Itoa(i)
+}
+
+func Float64ToString(f float64) string {
+	return strconv.FormatFloat(f, 'E', -1, 64)
+}
+
+func StringToFloat64(s string) float64 {
+	if len(s) == 0 {
+		return 0
+	}
+	float, err := strconv.ParseFloat(s, 64)
+	if err != nil {
+		return 0
+	}
+	return float
+
+}
+
+func Decimal(value float64) float64 {
+	value, _ = strconv.ParseFloat(fmt.Sprintf("%.2f", value), 64)
+	return value
+}
+
+// Int64ToStr int64转到string
+func Int64ToStr(src int64) string {
+	dst := strconv.FormatInt(src, 10)
+	return dst
+}
+
+// StrToInt64 string转到int64
+func StrToInt64(src string) int64 {
+	//	log.Print("src:%s.", src)
+	dst, err := strconv.ParseInt(src, 10, 64)
+	if err != nil {
+		return 0
+	}
+	return dst
+}
+
+func IntArrayToString(p []int32) string {
+	if len(p) == 0 {
+		return ""
+	}
+	marshal, err2 := json.Marshal(p)
+	if err2 != nil {
+		return ""
+	}
+	return string(marshal)
+}
+
+// GetPoint 获取点数
+func GetPoint(points ...int) int {
+	var sum int
+	for _, point := range points {
+		// Q，K，A 特殊处理
+		if point == 11 || point == 12 || point == 13 {
+			sum += 10
+		} else {
+			sum += point
+		}
+	}
+	return sum / 1 % 10
+}
+
+// WithStdLib 绝对值
+func WithStdLib(n int64) int64 {
+	return int64(math.Abs(float64(n)))
 }
