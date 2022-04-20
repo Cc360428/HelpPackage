@@ -1,4 +1,4 @@
-// Cc 帮助
+// Cc Help
 package main
 
 import (
@@ -6,10 +6,9 @@ import (
 	"time"
 )
 
-// Cc
 func Cc() {
 	logs.Info("Hello 世界")
-	logs.Info("Version: v0.0.8")
+	logs.Info("Version: v0.0.9")
 }
 
 func main() {

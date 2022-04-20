@@ -19,10 +19,6 @@ func RedisInit(redisIp, redisPassword string, db int) {
 		logs.Error("redis address is null in conf")
 		os.Exit(1)
 	}
-	if redisPassword == "" {
-		logs.Error("redis password is null in conf")
-		os.Exit(1)
-	}
 	redisClient = redis.NewClient(&redis.Options{
 		Addr:     redisIp,
 		Password: redisPassword, // no password set
