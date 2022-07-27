@@ -3,7 +3,7 @@ package utils
 
 import "regexp"
 
-//判断邮箱是否正确
+// Email 判断邮箱是否正确
 //正确为true
 //错误为false
 func Email(email string) (b bool) {
@@ -12,7 +12,7 @@ func Email(email string) (b bool) {
 	return rgx.MatchString(email)
 }
 
-//判断密码强度
+// Password 判断密码强度
 //正确为true
 //错误为false
 func Password(password string) (bools bool) {
@@ -21,7 +21,7 @@ func Password(password string) (bools bool) {
 	return rgx.MatchString(password)
 }
 
-//判断号码是否正确
+// Phone 判断号码是否正确
 //正确为true
 //错误为false
 func Phone(phone string) (bools bool) {

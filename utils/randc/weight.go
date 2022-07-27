@@ -1,6 +1,6 @@
-// 权重随机出结果
+// Package randc 权重随机出结果
 // 返回下标
-package random
+package randc
 
 func WeightedRandomIndex(weights []float32) int {
 	if len(weights) == 1 {
@@ -21,7 +21,7 @@ func WeightedRandomIndex(weights []float32) int {
 	return len(weights) - 1
 }
 
-// And must be 1
+// WeightF And must be 1
 func WeightF(weight []float64) int {
 
 	if len(weight) == 0 {
@@ -50,7 +50,7 @@ func WeightF(weight []float64) int {
 	return bucket
 }
 
-// 随机数权重
+// Weight 随机数权重
 func Weight(weight []uint64) int64 {
 	if len(weight) == 0 {
 		return 0

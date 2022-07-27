@@ -1,21 +1,19 @@
 /**
- * @Author cc
- * @Date 2021/4/1 10:27
- * @Description $ 条件随机
- **/
-package utils
+ * @Author: Cc
+ * @Description: 随机函数
+ * @File: randomness
+ * @Version: 1.0.0
+ * @Date: 2022/7/27 16:50
+ * @Software : GoLand
+ */
 
-import (
-	"github.com/Cc360428/HelpPackage/utils/logs"
-	"math/rand"
-	"time"
-)
+package randc
 
 // RandomSection 总和==1000 的数组
 // 返回概率数组下标（下标从0开始的）
 func RandomSection(probability []int64) (section int) {
 	if len(probability) == 0 {
-		logs.Error("错误 下标")
+		panic("下标错误")
 		return 0
 	}
 	var (
@@ -26,7 +24,7 @@ func RandomSection(probability []int64) (section int) {
 		total += item
 		minProbability = append(minProbability, total)
 	}
-	randomNum := random(total)
+	randomNum := RandInt64(total)
 	for index := 0; index < len(minProbability); index++ {
 		if index == 0 {
 			if randomNum <= minProbability[index] {
@@ -39,13 +37,4 @@ func RandomSection(probability []int64) (section int) {
 		}
 	}
 	return 0
-}
-
-// 最大返回随机数
-func random(value int64) int64 {
-	rand.Seed(time.Now().UnixNano())
-	if value == 0 {
-		return 0
-	}
-	return rand.Int63n(value)
 }

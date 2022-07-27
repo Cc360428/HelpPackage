@@ -27,60 +27,60 @@ type IdWorker struct {
 	idLock                *sync.Mutex
 }
 
-func (this *IdWorker) InitIdWorker(workerId, datacenterId int64) error {
+func (w *IdWorker) InitIdWorker(workerId, datacenterId int64) error {
 	var baseValue int64 = -1
-	this.startTime = 1463834116272
-	this.workerIdBits = 5
-	this.datacenterIdBits = 5
-	this.maxWorkerId = baseValue ^ (baseValue << this.workerIdBits)
-	this.maxDatacenterId = baseValue ^ (baseValue << this.datacenterIdBits)
-	this.sequenceBits = 12
-	this.workerIdLeftShift = this.sequenceBits
-	this.datacenterIdLeftShift = this.workerIdBits + this.workerIdLeftShift
-	this.timestampLeftShift = this.datacenterIdBits + this.datacenterIdLeftShift
-	this.sequenceMask = baseValue ^ (baseValue << this.sequenceBits)
-	this.sequence = 0
-	this.lastTimestamp = -1
-	this.signMask = ^baseValue + 1
+	w.startTime = 1463834116272
+	w.workerIdBits = 5
+	w.datacenterIdBits = 5
+	w.maxWorkerId = baseValue ^ (baseValue << w.workerIdBits)
+	w.maxDatacenterId = baseValue ^ (baseValue << w.datacenterIdBits)
+	w.sequenceBits = 12
+	w.workerIdLeftShift = w.sequenceBits
+	w.datacenterIdLeftShift = w.workerIdBits + w.workerIdLeftShift
+	w.timestampLeftShift = w.datacenterIdBits + w.datacenterIdLeftShift
+	w.sequenceMask = baseValue ^ (baseValue << w.sequenceBits)
+	w.sequence = 0
+	w.lastTimestamp = -1
+	w.signMask = ^baseValue + 1
 
-	this.idLock = &sync.Mutex{}
+	w.idLock = &sync.Mutex{}
 
-	if this.workerId < 0 || this.workerId > this.maxWorkerId {
+	if w.workerId < 0 || w.workerId > w.maxWorkerId {
 		return errors.New(fmt.Sprintf("workerId[%v] is less than 0 or greater than maxWorkerId[%v].", workerId, datacenterId))
 	}
-	if this.datacenterId < 0 || this.datacenterId > this.maxDatacenterId {
+	if w.datacenterId < 0 || w.datacenterId > w.maxDatacenterId {
 		return errors.New(fmt.Sprintf("datacenterId[%d] is less than 0 or greater than maxDatacenterId[%d].", workerId, datacenterId))
 	}
-	this.workerId = workerId
-	this.datacenterId = datacenterId
+	w.workerId = workerId
+	w.datacenterId = datacenterId
 	return nil
 }
 
-func (this *IdWorker) NextId() (int64, error) {
-	this.idLock.Lock()
+func (w *IdWorker) NextId() (int64, error) {
+	w.idLock.Lock()
 	timestamp := time.Now().UnixNano()
-	if timestamp < this.lastTimestamp {
-		return -1, errors.New(fmt.Sprintf("Clock moved backwards.  Refusing to generate id for %d milliseconds", this.lastTimestamp-timestamp))
+	if timestamp < w.lastTimestamp {
+		return -1, errors.New(fmt.Sprintf("Clock moved backwards.  Refusing to generate id for %d milliseconds", w.lastTimestamp-timestamp))
 	}
 
-	if timestamp == this.lastTimestamp {
-		this.sequence = (this.sequence + 1) & this.sequenceMask
-		if this.sequence == 0 {
-			timestamp = this.tilNextMillis()
-			this.sequence = 0
+	if timestamp == w.lastTimestamp {
+		w.sequence = (w.sequence + 1) & w.sequenceMask
+		if w.sequence == 0 {
+			timestamp = w.tilNextMillis()
+			w.sequence = 0
 		}
 	} else {
-		this.sequence = 0
+		w.sequence = 0
 	}
 
-	this.lastTimestamp = timestamp
+	w.lastTimestamp = timestamp
 
-	this.idLock.Unlock()
+	w.idLock.Unlock()
 
-	id := ((timestamp - this.startTime) << this.timestampLeftShift) |
-		(this.datacenterId << this.datacenterIdLeftShift) |
-		(this.workerId << this.workerIdLeftShift) |
-		this.sequence
+	id := ((timestamp - w.startTime) << w.timestampLeftShift) |
+		(w.datacenterId << w.datacenterIdLeftShift) |
+		(w.workerId << w.workerIdLeftShift) |
+		w.sequence
 
 	if id < 0 {
 		id = -id
@@ -89,9 +89,9 @@ func (this *IdWorker) NextId() (int64, error) {
 	return id, nil
 }
 
-func (this *IdWorker) tilNextMillis() int64 {
+func (w *IdWorker) tilNextMillis() int64 {
 	timestamp := time.Now().UnixNano()
-	if timestamp <= this.lastTimestamp {
+	if timestamp <= w.lastTimestamp {
 		timestamp = time.Now().UnixNano() / int64(time.Millisecond)
 	}
 	return timestamp
@@ -103,11 +103,4 @@ func GetStringOrder() (order string) {
 	t, _ := currWoker.NextId()
 	order = Int64TurnString(t)
 	return order
-}
-
-func Getint64Order() (order int64) {
-	currWoker := IdWorker{}
-	_ = currWoker.InitIdWorker(1000, 1)
-	t, _ := currWoker.NextId()
-	return t
 }

@@ -3,6 +3,8 @@ package utils
 import (
 	"encoding/json"
 	"fmt"
+	"golang.org/x/text/language"
+	"golang.org/x/text/message"
 	"os"
 	"path/filepath"
 
@@ -147,4 +149,12 @@ func DuplicateRemoval(a []int64) []int64 {
 		}
 	}
 	return response
+}
+
+// IntChipToStringAll ...
+// @Description: 自定义
+// @param chip
+// @return string
+func IntChipToStringAll(toType language.Tag, chip int64) string {
+	return message.NewPrinter(toType).Sprintf("%.2v", chip)
 }
