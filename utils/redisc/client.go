@@ -19,7 +19,7 @@ import (
 )
 
 // StartClient ...
-// @Description: 初始化 exampleClient 给出使用者最大权利
+// @Description: 初始化 ExampleClient 给出使用者最大权利
 // @param redisIp
 // @param redisPassword
 // @param db
