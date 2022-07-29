@@ -2,11 +2,12 @@ package main
 
 import (
 	"context"
+
 	"github.com/olivere/elastic/v7"
 )
 
 var (
-	subject   Subject
+	// subject   Subject
 	indexName = "subject"
 	servers   = []string{"http://172.12.15.134:9200/"}
 )

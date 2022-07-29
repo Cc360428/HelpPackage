@@ -2,6 +2,8 @@ package conf
 
 import (
 	"fmt"
+	"log"
+
 	"github.com/Unknwon/goconfig"
 )
 
@@ -17,5 +19,8 @@ func Test1() {
 	fmt.Println(password)
 
 	redis, err := ini.GetSection("redis")
+	if err != nil {
+		log.Fatal(err.Error())
+	}
 	fmt.Println(redis)
 }

@@ -78,15 +78,15 @@ func GetRandomString(length int) string {
 	return string(result)
 }
 
-func (this *Params) SortToJoin() string {
+func (t *Params) SortToJoin() string {
 	var keyList []string
-	for k, _ := range *this {
+	for k := range *t {
 		keyList = append(keyList, k)
 	}
 	sort.Strings(keyList)
 	sortQueryStringTmp := ""
 	for _, v := range keyList {
-		sortQueryStringTmp += "&" + SpecialUrlEncode(v) + "=" + SpecialUrlEncode(this.Get(v))
+		sortQueryStringTmp += "&" + SpecialUrlEncode(v) + "=" + SpecialUrlEncode(t.Get(v))
 	}
 	// 字符串转切片截取字符串开头多余的&
 	// rune切片类型返回的长度为物理长度 len([]rune(string)) 获取的是肉眼可见的长度

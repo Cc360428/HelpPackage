@@ -1,9 +1,10 @@
 package utils
 
 import (
-	"github.com/Cc360428/HelpPackage/utils/logs"
-	"github.com/goinggo/mapstructure"
+	"log"
 	"testing"
+
+	"github.com/goinggo/mapstructure"
 )
 
 type HttpResponse struct {
@@ -26,9 +27,9 @@ func TestMapToJson(t *testing.T) {
 	var r HttpResponse
 	err := mapstructure.Decode(m, &r)
 	if err != nil {
-		logs.Error("转换错误 可能传入的不是 map", err.Error())
+		log.Println("转换错误 可能传入的不是 map", err.Error())
 	}
-	logs.Info(r.Code)
+	log.Println(r.Code)
 }
 
 func TestJsonToMap(t *testing.T) {
@@ -41,11 +42,11 @@ func TestJsonToMap(t *testing.T) {
 	m["data"] = data
 	toJson, err := MapToJson(m)
 	if err != nil {
-		logs.Error(err.Error())
+		log.Println(err.Error())
 	}
 	ma, err := JsonToMap(toJson)
 	if err != nil {
-		logs.Error(err.Error())
+		log.Println(err.Error())
 	}
-	logs.Info(ma)
+	log.Println(ma)
 }

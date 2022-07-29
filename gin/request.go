@@ -1,9 +1,10 @@
-// Gin request 请求参数
+// Package gin_utils Gin request 请求参数
 package gin_utils
 
 import (
 	"errors"
-	"github.com/Cc360428/HelpPackage/utils/logs"
+	"log"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -12,7 +13,7 @@ func ParseJSON(c *gin.Context, obj interface{}) error {
 	//  解析是否是json 格式
 	if c.ShouldBind(&obj) == nil {
 	} else {
-		logs.Error("传入参数失败")
+		log.Println("传入参数失败")
 		return errors.New("解析请求参数发生错误")
 	}
 	return nil

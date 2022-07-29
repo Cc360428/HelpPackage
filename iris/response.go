@@ -1,10 +1,11 @@
-// iris response Subpackage
+// Package iris_utils iris response Subpackage
 package iris_utils
 
 import (
-	"github.com/Cc360428/HelpPackage/utils/logs"
-	"github.com/kataras/iris/v12"
+	"log"
 	"net/http"
+
+	"github.com/kataras/iris/v12"
 )
 
 // https://www.cnblogs.com/xflonga/p/9368993.html
@@ -28,11 +29,10 @@ func ResponseStatusOK(ctx iris.Context, code int, msg string, data interface{}) 
 	responseBody.Data = data
 	_, err := ctx.JSON(responseBody)
 	if err != nil {
-		logs.Info("response error ", err.Error())
+		log.Println("response error ", err.Error())
 		ctx.StatusCode(http.StatusInternalServerError)
 		return
 	}
-	return
 }
 
 // code code
@@ -47,9 +47,8 @@ func ResponseStatusBadRequest(ctx iris.Context, code int, msg string, data inter
 	responseBody.Data = data
 	_, err := ctx.JSON(responseBody)
 	if err != nil {
-		logs.Info("response error ", err.Error())
+		log.Println("response error ", err.Error())
 		ctx.StatusCode(http.StatusInternalServerError)
 		return
 	}
-	return
 }

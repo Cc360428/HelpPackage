@@ -1,13 +1,14 @@
-// email send
+// Package utils email send
 package utils
 
 import (
-	"github.com/Cc360428/HelpPackage/utils/logs"
+	"log"
+
 	"gopkg.in/gomail.v2"
 )
 
 func EmailCode(email string) (code string, err error) {
-	logs.Info("输入的邮箱是：", email)
+	log.Println("输入的邮箱是：", email)
 	code = GenValidateCode(6)
 	m := gomail.NewMessage()
 	m.SetAddressHeader("From", "", "Smart")           // 发件人
@@ -70,14 +71,14 @@ func EmailCode(email string) (code string, err error) {
 	m.SetBody("text/html", HTML)
 	d := gomail.NewDialer("smtp.qq.com", 465, "", "") // 发送邮件服务器、端口、发件人账号、发件人密码
 	if err := d.DialAndSend(m); err != nil {
-		logs.Error(err.Error())
+		log.Println(err.Error())
 		return code, err
 	}
 	return code, err
 }
 
 func Reply(email, title, content string) (err error) {
-	logs.Info("输入的邮箱是：", email)
+	log.Println("输入的邮箱是：", email)
 	m := gomail.NewMessage()
 	m.SetAddressHeader("From", "", "")                // 发件人
 	m.SetHeader("To", m.FormatAddress(email, "user")) // 收件人
@@ -137,7 +138,7 @@ func Reply(email, title, content string) (err error) {
 	m.SetBody("text/html", HTML)
 	d := gomail.NewDialer("smtp.qq.com", 465, "", "") // 发送邮件服务器、端口、发件人账号、发件人密码
 	if err := d.DialAndSend(m); err != nil {
-		logs.Error(err.Error())
+		log.Println(err.Error())
 		return err
 	}
 	return err

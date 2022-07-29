@@ -28,7 +28,7 @@ func WeightF(weight []float64) int {
 		return 0
 	}
 
-	tmp := make([]float64, len(weight), len(weight))
+	tmp := make([]float64, len(weight))
 	index := 0
 
 	for _, v := range weight {
@@ -56,7 +56,7 @@ func Weight(weight []uint64) int64 {
 		return 0
 	}
 
-	tmp := make([]uint64, len(weight), len(weight))
+	tmp := make([]uint64, len(weight))
 	var index int64
 	var total int64
 

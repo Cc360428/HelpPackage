@@ -32,7 +32,7 @@ type HeadNode struct {
 }
 
 var (
-	LIST_LEN = 5
+	ListLen = 5
 )
 
 //打印
@@ -55,7 +55,11 @@ func printNode(head *HeadNode) error {
 	return nil
 }
 
-//尾插入
+//insertTailNode ...
+// @Description: 尾插入
+// @param head
+// @param node
+// @return error
 func insertTailNode(head *HeadNode, node *Node) error {
 	if head == nil || node == nil {
 		return errors.New("input parameters is nil")
@@ -97,7 +101,7 @@ func insertHeadNode(head *HeadNode, node *Node) error {
 	return nil
 }
 
-//判断节点是否存在列表，存在则返回该节点，不存在则返回nil
+// 判断节点是否存在列表，存在则返回该节点，不存在则返回nil
 func selectNode(head *HeadNode, node *Node) (*Node, error) {
 	if head == nil || node == nil {
 		return nil, errors.New("input parameters is nil")
@@ -119,7 +123,7 @@ func selectNode(head *HeadNode, node *Node) (*Node, error) {
 	return nil, nil
 }
 
-//删除节点
+// 删除节点
 func deleteNode(head *HeadNode, node *Node) error {
 	if head == nil || node == nil {
 		return errors.New("input parameters is nil")
@@ -207,7 +211,7 @@ func handleLRU(head *HeadNode, node *Node) error {
 
 	if tmpNode == nil {
 		//如果此数据没有在缓存链表中 如果大于缓存长度10，则删除尾巴节点
-		if head.num >= LIST_LEN {
+		if head.num >= ListLen {
 			err = deleteTailNode(head)
 			if err != nil {
 				return err

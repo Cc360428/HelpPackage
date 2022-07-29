@@ -1,4 +1,4 @@
-// beego 参数返回
+// Package beego_utils beego 参数返回
 package beego_utils
 
 import "github.com/astaxie/beego"
@@ -12,7 +12,7 @@ type Result struct {
 type CodeType int
 
 const (
-	// 200
+	// RetSuccess 200
 	RetSuccess CodeType = 0
 
 	// 404

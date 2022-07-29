@@ -1,48 +1,50 @@
-// beego 获取参数
+// Package beego_utils beego 获取参数
 package beego_utils
 
 import (
 	"crypto/md5"
 	"encoding/hex"
 	"encoding/json"
+	"errors"
 	"fmt"
-	"github.com/Cc360428/HelpPackage/utils/logs"
-	"github.com/astaxie/beego"
+	"log"
 	"net"
 	"strings"
 	"time"
+
+	"github.com/astaxie/beego"
 )
 
-// Get 获取int64
+// HelperGetInt64Param Get 获取int64
 func HelperGetInt64Param(this *beego.Controller, para string) int64 {
 	pathint, err := this.GetInt64(para, 0)
 	if err != nil {
-		logs.Error("get int parameter err :: %v", err.Error())
+		log.Printf("get int parameter err :: %v", err.Error())
 		ReturnFail(this, "get int parameter err :: "+err.Error())
 	}
 	return pathint
 }
 
-// Get 获取int
+// HelperGetIntParam Get 获取int
 func HelperGetIntParam(this *beego.Controller, para string) int {
 	pathint, err := this.GetInt(para, 0)
 	if err != nil {
-		logs.Error("get int parameter err :: %v", err.Error())
+		log.Printf("get int parameter err :: %v", err.Error())
 		ReturnFail(this, "get int parameter err :: "+err.Error())
 	}
 	return pathint
 }
 
-// Get 获取string
+// HelperGetStringParam Get 获取string
 func HelperGetStringParam(this *beego.Controller, para string) string {
-	pathstr := this.GetString(para)
-	if pathstr == "" {
+	pathStr := this.GetString(para)
+	if pathStr == "" {
 		ReturnFail(this, "parameter: "+para+" is null")
 	}
-	return pathstr
+	return pathStr
 }
 
-// Get 获取string url/:
+// HelperGetPath Get 获取string url/:
 func HelperGetPath(this *beego.Controller, path string) string {
 	paths := this.GetString(":" + path)
 	if paths == "" {
@@ -51,7 +53,7 @@ func HelperGetPath(this *beego.Controller, path string) string {
 	return paths
 }
 
-// Post 获取json
+// HelperConvectBody Post 获取json
 func HelperConvectBody(this *beego.Controller, out interface{}) {
 	var err error
 	result := ResultInit()
@@ -64,7 +66,7 @@ func HelperConvectBody(this *beego.Controller, out interface{}) {
 	}
 	err = json.Unmarshal(this.Ctx.Input.RequestBody, out)
 	if err != nil {
-		logs.Error("Body （%s） 转换错误， err = %v", string(this.Ctx.Input.RequestBody), err.Error())
+		log.Printf("Body (%s) 转换错误， err = %v", string(this.Ctx.Input.RequestBody), err.Error())
 		result.Msg = err.Error()
 		this.Data["json"] = result
 		this.ServeJSON()
@@ -72,32 +74,30 @@ func HelperConvectBody(this *beego.Controller, out interface{}) {
 	}
 }
 
-//  获取 session key string
+// HelperConfigSessStringcfg 获取 session key string
 func HelperConfigSessStringcfg(sessionName string, configName string) (cfg string, err error) {
 	// 从配置文件中获取 session 和key 对应的 配置string
 	cfgSess, err := beego.AppConfig.GetSection(strings.ToLower(sessionName))
 	if err != nil {
-		logs.Error("session (%v) err :: %v", err.Error())
+		log.Printf("session (%v) err :: %v", sessionName, err.Error())
 		return "", err
 	} else {
 		cfg = cfgSess[strings.ToLower(configName)]
 		if cfg == "" {
 			err = fmt.Errorf("config (%v) of session (%v) is null ", configName, sessionName) // errors.New(fmt.Sprintf("config (%v) of session (%v) is null ", configName, sessionName))
-			logs.Error(err.Error())
+			log.Println(err.Error())
 			return "", err
 		}
 	}
 	return cfg, nil
 }
 
-/*
-*    转换macaddr，去掉 “: - ”以及空格
-**/
+// HelperConvertMac 转换macaddr，去掉 “: - ”以及空格
 func HelperConvertMac(mac *string) (err error) {
 
 	if mac == nil {
 		err = fmt.Errorf("mac is null")
-		logs.Error(err.Error())
+		log.Println(err.Error())
 		return err
 	}
 	*mac = strings.TrimSpace(*mac)
@@ -108,7 +108,6 @@ func HelperConvertMac(mac *string) (err error) {
 	return nil
 }
 
-//
 func HelperConvetInterface(in interface{}, out interface{}) (err error) {
 	inBytes, err := json.Marshal(in)
 	if err != nil {
@@ -117,7 +116,6 @@ func HelperConvetInterface(in interface{}, out interface{}) (err error) {
 	return json.Unmarshal(inBytes, out)
 }
 
-//
 func HelperTimeGetDaySection() (startTime time.Time, endTime time.Time, err error) {
 
 	today := time.Now()
@@ -126,19 +124,20 @@ func HelperTimeGetDaySection() (startTime time.Time, endTime time.Time, err erro
 	startStr := stStr + " 00:00:00"
 	startTime, err = time.Parse("2006-01-02 15:04:05", startStr)
 	if err != nil {
-		logs.Error("get day section err :: %v", err.Error())
+		log.Printf("get day section err :: %v", err.Error())
 		return startTime, endTime, err
 	}
 	endStr := stStr + " 23:59:59"
 	endTime, err = time.Parse("2006-01-02 15:04:05", endStr)
-
+	if err != nil {
+		return startTime, endTime, err
+	}
 	startTime = startTime.Local()
 	endTime = endTime.Local()
 
 	return startTime, endTime, nil
 }
 
-//
 type Network struct {
 	Name       string
 	IP         string
@@ -157,14 +156,14 @@ func HelperGetNetworkInfo() ([]*Network, error) {
 	var nws []*Network
 	intf, err := net.Interfaces()
 	if err != nil {
-		logs.Error("get network info failed: %v", err.Error())
+		log.Printf("get network info failed: %v", err.Error())
 		return nil, err
 	}
 	var is = make([]intfInfo, len(intf))
 	for i, v := range intf {
 		ips, err := v.Addrs()
 		if err != nil {
-			logs.Error("get network addr failed: %v", err.Error())
+			log.Printf("get network addr failed: %v", err.Error())
 			return nil, err
 		}
 		//此处过滤loopback（本地回环）和isatap（isatap隧道）
@@ -195,33 +194,30 @@ func HelperGetNetworkInfo() ([]*Network, error) {
 	return nws, nil
 }
 
-func HelperDealMac(mac string) (macaddr string) {
-	macaddr = mac
-	macaddr = strings.Replace(macaddr, ":", "", 5)
-	macaddr = strings.Replace(macaddr, "-", "", 5)
-	macaddr = strings.ToUpper(macaddr)
-	macaddr = strings.TrimSpace(macaddr)
-	return macaddr
+func HelperDealMac(mac string) (ipaddr string) {
+	ipaddr = mac
+	ipaddr = strings.Replace(ipaddr, ":", "", 5)
+	ipaddr = strings.Replace(ipaddr, "-", "", 5)
+	ipaddr = strings.ToUpper(ipaddr)
+	ipaddr = strings.TrimSpace(ipaddr)
+	return ipaddr
 }
 
-/**
-*
-**/
 func HelperGetNetwork() (macaddr string, ip string, err error) {
 	ComputerIpPrex := beego.AppConfig.String("ComputerIpPrex")
 	if ComputerIpPrex == "" {
-		err = fmt.Errorf("ComputerIpPrex 必须配置 如 ： 192.168.3.") // errors.New("ComputerIpPrex 必须配置 如 ： 192.168.3.")
-		logs.Error(err.Error())
+		err = fmt.Errorf("computerIpPrex 必须配置 如 ： 192.168.3") // errors.New("ComputerIpPrex 必须配置 如 ： 192.168.3.")
+		log.Println(err.Error())
 		return macaddr, ip, err
 	}
-	netwks, err := HelperGetNetworkInfo()
+	networks, err := HelperGetNetworkInfo()
 	if err != nil {
-		logs.Error("networks warn :: %v", err.Error())
+		log.Printf("networks warn :: %v", err.Error())
 		return macaddr, ip, err
 	}
 
-	for loop := 0; loop < len(netwks); loop++ {
-		nk := netwks[loop]
+	for loop := 0; loop < len(networks); loop++ {
+		nk := networks[loop]
 		nkIp := nk.IP
 		if strings.HasPrefix(nkIp, ComputerIpPrex) {
 			macaddr = HelperDealMac(nk.MACAddress)
@@ -230,12 +226,10 @@ func HelperGetNetwork() (macaddr string, ip string, err error) {
 		}
 	}
 
-	err = fmt.Errorf("no find mac and ip") //errors.New("no find mac and ip")
-	logs.Error(err)
-	return macaddr, ip, err
+	return macaddr, ip, errors.New("no find mac and ip")
 }
 
-//  获取文件 扩展名
+// HelperFileSuffix 获取文件 扩展名
 func HelperFileSuffix(filename string) (suffix string) {
 	fileArray := strings.Split(filename, ".")
 	if len(fileArray) < 1 {
@@ -244,8 +238,8 @@ func HelperFileSuffix(filename string) (suffix string) {
 	return fileArray[len(fileArray)-1]
 }
 
-// 获取 md5 加密字符串， 有盐值
-func HelperMd5andSalt(srcStr string, salt string) (md5Str string) {
+// HelperMd5andSalt 获取 md5 加密字符串， 有盐值 (srcStr string 未使用已删除)
+func HelperMd5andSalt(salt string) (md5Str string) {
 	m5 := md5.New()
 	m5.Write([]byte("Mi Ma"))
 	m5.Write([]byte(string(salt)))
@@ -255,13 +249,13 @@ func HelperMd5andSalt(srcStr string, salt string) (md5Str string) {
 }
 
 // 时间转字符串
-const base_format = "2006-01-02 15:04:05"
+const baseFormat = "2006-01-02 15:04:05"
 
 func HelperDate2Str(timeIn time.Time) string {
-	return timeIn.Format(base_format)
+	return timeIn.Format(baseFormat)
 }
 
-// 时间转字符串
-func HelperStr2Date(str_time string) (time.Time, error) {
-	return time.Parse(base_format, str_time)
+// HelperStr2Date 时间转字符串
+func HelperStr2Date(strTime string) (time.Time, error) {
+	return time.Parse(baseFormat, strTime)
 }

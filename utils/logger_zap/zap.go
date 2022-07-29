@@ -1,21 +1,20 @@
-package main
+package logger_zap
 
 import (
 	"fmt"
+	"time"
+
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
-	"time"
 )
 
-var logger *zap.Logger
-
 func formatEncodeTime(t time.Time, enc zapcore.PrimitiveArrayEncoder) {
-	// 	  {"level":"debug","t":"20200919_222053","caller":"logger/main.go:50","msg":"sadf","app":"test"}
+	// 	  {"level":"debug","t":"20200919_222053","caller":"logger_zap/zap.go:50","msg":"sadf","app":"test"}
 	fmt.Println()
 	enc.AppendString(fmt.Sprintf("%d-%d-%d %d:%d:%d ", t.Year(), t.Month(), t.Day(), t.Hour(), t.Minute(), t.Second()))
 }
 
-func InitZapLog() {
+func InitZapLog() (*zap.Logger, error) {
 	cfg := zap.Config{
 		Level:       zap.NewAtomicLevelAt(zap.DebugLevel),
 		Development: true,
@@ -23,7 +22,7 @@ func InitZapLog() {
 		EncoderConfig: zapcore.EncoderConfig{
 			TimeKey:        "t",
 			LevelKey:       "level",
-			NameKey:        "logger",
+			NameKey:        "logger_zap",
 			CallerKey:      "caller",
 			MessageKey:     "msg",
 			StacktraceKey:  "trace",
@@ -33,23 +32,25 @@ func InitZapLog() {
 			EncodeDuration: zapcore.SecondsDurationEncoder,
 			EncodeCaller:   zapcore.ShortCallerEncoder,
 		},
-		OutputPaths:      []string{"utils/logger/save/zap.log"},
-		ErrorOutputPaths: []string{"utils/logger/save/zap.log"},
+		OutputPaths:      []string{"Cc360428_log_test"},
+		ErrorOutputPaths: []string{"Cc360428_log_test"},
 		InitialFields: map[string]interface{}{
 			"app": "test",
 		},
 	}
-	var err error
-	logger, err = cfg.Build()
+
+	logger, err := cfg.Build()
 	if err != nil {
 		panic("log init fail:" + err.Error())
 	}
+	return logger, nil
 }
 
-func main() {
-	InitZapLog()
-	defer logger.Sync()
-	logger.Debug("sada")
-	logger.Info("sada")
-	logger.Error("error")
-}
+//
+//func main() {
+//	InitZapLog()
+//	defer logger.Sync()
+//	logger.Debug("sada")
+//	logger.Info("sada")
+//	logger.Error("error")
+//}

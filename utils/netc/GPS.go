@@ -1,5 +1,5 @@
 // GPS 定位计算距离
-package utils
+package netc
 
 import "math"
 

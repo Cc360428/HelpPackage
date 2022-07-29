@@ -1,5 +1,5 @@
 // IP地址
-package utils
+package netc
 
 import (
 	"bytes"

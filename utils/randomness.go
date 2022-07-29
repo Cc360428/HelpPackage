@@ -6,7 +6,7 @@
 package utils
 
 import (
-	"github.com/Cc360428/HelpPackage/utils/logs"
+	"log"
 	"math/rand"
 	"time"
 )
@@ -15,7 +15,7 @@ import (
 // 返回概率数组下标（下标从0开始的）
 func RandomSection(probability []int64) (section int) {
 	if len(probability) == 0 {
-		logs.Error("错误 下标")
+		log.Println("错误 下标")
 		return 0
 	}
 	var (

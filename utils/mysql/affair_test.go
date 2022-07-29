@@ -2,15 +2,14 @@ package mysql_help
 
 import (
 	"database/sql"
-	"github.com/Cc360428/HelpPackage/utils/logs"
 	"testing"
 )
 
 func TestAffair(t *testing.T) {
 
 	type args struct {
-		db     *sql.DB
-		txFunc func(*sql.Tx) error
+		db *sql.DB
+		// txFunc func(*sql.Tx) error
 	}
 	var dbclient args
 
@@ -20,6 +19,6 @@ func TestAffair(t *testing.T) {
 		return nil
 	})
 	if err != nil {
-		logs.Info("Affair update 错误", err.Error())
+		t.Log("Affair update 错误", err.Error())
 	}
 }

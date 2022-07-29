@@ -22,13 +22,13 @@ func GetLocalIP() string {
  源码是这样的 因 获取本地IP 不是公网的IP 服务器会IP地址错误
  // getLocalIP 获取本地ip
 func getLocalIP() string {
-	addrs, err := net.InterfaceAddrs()
+	addrs, err := netc.InterfaceAddrs()
 	if err != nil {
 		return ""
 	}
 	for _, address := range addrs {
 		// check the address type and if it is not a loopback the display it
-		if ipnet, ok := address.(*net.IPNet); ok && !ipnet.IP.IsLoopback() {
+		if ipnet, ok := address.(*netc.IPNet); ok && !ipnet.IP.IsLoopback() {
 			if ipnet.IP.To4() != nil {
 				return ipnet.IP.String()
 			}

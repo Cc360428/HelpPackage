@@ -2,18 +2,19 @@
 package image
 
 import (
-	"github.com/Cc360428/HelpPackage/utils/logs"
-	"github.com/skip2/go-qrcode"
 	"image/color"
 	"image/png"
+	"log"
 	"os"
+
+	"github.com/skip2/go-qrcode"
 )
 
 // 生成二维码 返回 []byte
 func GenerateQrCode(content string) ([]byte, error) {
 	encode, err := qrcode.Encode(content, qrcode.Highest, 256)
 	if err != nil {
-		logs.Error(err.Error())
+		log.Println(err.Error())
 		return nil, err
 	}
 	return encode, nil
@@ -23,7 +24,7 @@ func GenerateQrCode(content string) ([]byte, error) {
 func NewQRCode() {
 	code, err := qrcode.New("https://lichaocheng.top", qrcode.Medium)
 	if err != nil {
-		logs.Error(err.Error())
+		log.Println(err.Error())
 		return
 	}
 	// 是否禁用二维码边框
@@ -36,8 +37,11 @@ func NewQRCode() {
 	imagePng := code.Image(256)
 	file, err := os.Create("new_qr_code.png")
 	if err != nil {
-		logs.Error(err.Error())
+		log.Println(err.Error())
 	}
 	defer file.Close()
 	err = png.Encode(file, imagePng)
+	if err != nil {
+		log.Println(err.Error())
+	}
 }

@@ -1,9 +1,6 @@
-/**
- * @Author cc
- * @Date 2021/4/1 10:41
- * @Description $ 钉钉群预警
- **/
-package utils
+// Package monitor_message
+// @Description: 钉钉群预警
+package monitor_message
 
 import (
 	"encoding/json"
@@ -30,7 +27,7 @@ type NailRobot struct {
 	} `json:"at"`
 }
 
-// Send("Error", " testaee", true)
+// Send Send("Error", " test", true)
 func Send(messageType, message string, isAtAll bool) error {
 	var messageAll NailRobot
 	messageAll.Msgtype = "text"

@@ -1,13 +1,14 @@
 package mongodb
 
 import (
-	"gopkg.in/mgo.v2/bson"
 	"log"
 	"testing"
+
+	"gopkg.in/mgo.v2/bson"
 )
 
 func Test(t *testing.T) {
-	session, err := NewMongdodb("127.0.0.1")
+	session, err := NewMongodb("127.0.0.1")
 	if err != nil {
 		log.Panicln("错误：", err.Error())
 	}

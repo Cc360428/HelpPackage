@@ -3,16 +3,17 @@ package image
 import (
 	"errors"
 	"fmt"
-	"github.com/Cc360428/HelpPackage/utils/logs"
-	"github.com/nfnt/resize"
-	"github.com/skip2/go-qrcode"
 	"image"
 	"image/draw"
 	"image/png"
+	"log"
 	"os"
+
+	"github.com/nfnt/resize"
+	"github.com/skip2/go-qrcode"
 )
 
-var err error
+var errImages error
 
 func createAvatar() (image.Image, error) {
 	var (
@@ -21,19 +22,19 @@ func createAvatar() (image.Image, error) {
 		avatarFile *os.File
 		avatarImg  image.Image
 	)
-	bgImg, err = createQrCode("https://studygolang.com/pkgdoc")
-	if err != nil {
-		fmt.Println("创建二维码失败:", err)
+	bgImg, errImages = createQrCode("https://studygolang.com/pkgdoc")
+	if errImages != nil {
+		fmt.Println("创建二维码失败:", errImages)
 		return nil, errors.New("创建二维码失败")
 	}
 
-	avatarFile, err = os.Open("golang.png")
-	if err != nil {
-		logs.Error(err.Error())
+	avatarFile, errImages = os.Open("golang.png")
+	if errImages != nil {
+		log.Println(errImages.Error())
 	}
-	avatarImg, err = png.Decode(avatarFile)
-	if err != nil {
-		logs.Error(err.Error())
+	avatarImg, errImages = png.Decode(avatarFile)
+	if errImages != nil {
+		log.Println(errImages.Error())
 	}
 	avatarImg = Resize(avatarImg, 64, 64)
 	b := bgImg.Bounds()
@@ -47,7 +48,7 @@ func createAvatar() (image.Image, error) {
 
 	draw.Draw(m, avatarImg.Bounds().Add(offset), avatarImg, image.Point{X: 0, Y: 0}, draw.Over)
 
-	return m, err
+	return m, errImages
 }
 
 func createQrCode(content string) (img image.Image, err error) {

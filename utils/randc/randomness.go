@@ -9,11 +9,13 @@
 
 package randc
 
+import "log"
+
 // RandomSection 总和==1000 的数组
 // 返回概率数组下标（下标从0开始的）
 func RandomSection(probability []int64) (section int) {
 	if len(probability) == 0 {
-		panic("下标错误")
+		log.Fatal("下标错误")
 		return 0
 	}
 	var (

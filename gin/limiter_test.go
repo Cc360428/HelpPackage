@@ -1,10 +1,11 @@
 package gin_utils
 
 import (
-	"github.com/Cc360428/HelpPackage/utils/logs"
-	"github.com/gin-gonic/gin"
+	"log"
 	"testing"
 	"time"
+
+	"github.com/gin-gonic/gin"
 )
 
 func TestNewRateLimiter(t *testing.T) {
@@ -17,7 +18,7 @@ func TestNewRateLimiter(t *testing.T) {
 	go func() {
 		err := router.Run(":38080")
 		if err != nil {
-			logs.Error(err.Error())
+			log.Println(err.Error())
 		}
 	}()
 	time.Sleep(time.Second * 3)

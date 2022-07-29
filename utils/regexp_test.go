@@ -1,14 +1,13 @@
 package utils
 
 import (
-	"github.com/Cc360428/HelpPackage/utils/logs"
 	"testing"
 )
 
 func TestEmail(t *testing.T) {
 	email := "li_chao_cheng@163.com"
 	gotB := Email(email)
-	logs.Info(gotB)
+	t.Log(gotB)
 }
 
 func TestPassword(t *testing.T) {

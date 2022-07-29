@@ -3,15 +3,15 @@ package main
 
 import (
 	"fmt"
-	"github.com/BurntSushi/toml"
-	ginUtils "github.com/Cc360428/HelpPackage/gin"
-	"github.com/Cc360428/HelpPackage/utils/logs"
-	_ "github.com/go-sql-driver/mysql"
-	"github.com/jinzhu/gorm"
+	"log"
+	"sync"
 	"time"
 
+	"github.com/BurntSushi/toml"
+	ginUtils "github.com/Cc360428/HelpPackage/gin"
 	"github.com/gin-gonic/gin"
-	"sync"
+	_ "github.com/go-sql-driver/mysql"
+	"github.com/jinzhu/gorm"
 )
 
 var (
@@ -23,7 +23,7 @@ var (
 func main() {
 	engine := gin.New()
 	engine.GET("/", root)
-	logs.Info("get---> http://localhost:8080")
+	log.Println("get---> http://localhost:8080")
 	s.Add(2)
 	go monitor()
 	go RConfig()
@@ -54,7 +54,7 @@ func root(context *gin.Context) {
 	var users []CcUser
 	err := MysqlClient.Raw("select * from cc_user").Scan(&users).Error
 	if err != nil {
-		logs.Error(err.Error())
+		log.Println(err.Error())
 	}
 	ginUtils.ResponseSuccessBody(context, "ok", users)
 }
@@ -71,15 +71,15 @@ type Person struct {
 func RConfig() {
 	var path = "utils/monitor/conf/base.toml"
 	if _, err := toml.DecodeFile(path, &conf); err != nil {
-		logs.Error(err.Error())
+		log.Println(err.Error())
 		panic(err.Error())
 	}
 	s.Done()
-	logs.Warning("this -->", conf)
+	log.Println("this -->", conf)
 }
 
 func mysqlClient() {
-	logs.Info("更新mysql")
+	log.Println("更新mysql")
 	mysql := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8&parseTime=True&loc=Local",
 		"root", conf.Password,
 		"lichaocheng.top",

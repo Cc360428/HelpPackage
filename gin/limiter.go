@@ -3,9 +3,10 @@ package gin_utils
 import (
 	"errors"
 	"fmt"
+	"time"
+
 	"github.com/Cc360428/HelpPackage/utils/ratelimit"
 	"github.com/gin-gonic/gin"
-	"time"
 )
 
 type RateKeyFunc func(ctx *gin.Context) (string, error)
@@ -38,7 +39,7 @@ func (r *RateLimiterMiddleware) Middleware() gin.HandlerFunc {
 		limiter, err := r.get(ctx)
 		if err != nil || limiter.TakeAvailable(1) == 0 {
 			if err == nil {
-				err = errors.New("Too many requests")
+				err = errors.New("too many requests")
 			}
 			_ = ctx.AbortWithError(429, err)
 		} else {

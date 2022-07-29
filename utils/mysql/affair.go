@@ -4,7 +4,7 @@ package mysql_help
 import (
 	"database/sql"
 	"fmt"
-	"github.com/Cc360428/HelpPackage/utils/logs"
+	"log"
 )
 
 // Trans 事务
@@ -24,7 +24,7 @@ func Affair(db *sql.DB, txFunc func(*sql.Tx) error) (err error) {
 		}
 		if err != nil {
 			tx.Rollback()
-			logs.Info("Rollback, Errmsg: " + err.Error())
+			log.Println("Rollback, Errmsg: " + err.Error())
 			return
 		}
 		err = tx.Commit()

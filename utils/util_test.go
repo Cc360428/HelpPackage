@@ -2,9 +2,10 @@ package utils
 
 import (
 	"fmt"
-	"golang.org/x/text/language"
 	"reflect"
 	"testing"
+
+	"golang.org/x/text/language"
 )
 
 func TestToInt64(t *testing.T) {

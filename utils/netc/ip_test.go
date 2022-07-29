@@ -1,7 +1,7 @@
-package utils
+package netc
 
 import (
-	"github.com/Cc360428/HelpPackage/utils/logs"
+	"log"
 	"testing"
 
 	"fmt"
@@ -11,12 +11,12 @@ func TestResolveIPV4address(t *testing.T) {
 	country, area, city, Isp, err := ResolveIPV4address("60.205.176.110")
 	//country, area, city, Isp, err := ResolveIPV4address("45.130.146.4")
 	if err != nil {
-		logs.Error(err.Error())
+		log.Println(err.Error())
 	}
-	logs.Info(country)
-	logs.Info(area)
-	logs.Info(city)
-	logs.Info(Isp)
+	log.Println(country)
+	log.Println(area)
+	log.Println(city)
+	log.Println(Isp)
 }
 
 // 外网IP地址
@@ -26,5 +26,5 @@ func TestGetExternal(t *testing.T) {
 
 func TestGetLocalIPAddress(t *testing.T) {
 	g := GetLocalIPAddress()
-	logs.Info(g)
+	log.Println(g)
 }

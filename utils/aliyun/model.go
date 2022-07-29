@@ -17,52 +17,42 @@ type UserParams struct {
 
 type Params map[string]string
 
-func (p Params) Get(key string) string {
-	v, _ := p[key]
-	return v
+func (t Params) Get(key string) string {
+	if value, ok := t[key]; ok {
+		return value
+	}
+	return ""
 }
 
-func (p Params) Set(key, value string) {
-	p[key] = value
+func (t Params) Set(key, value string) {
+	t[key] = value
 }
 
-func (p Params) SetInterface(key string, value interface{}) {
+func (t Params) SetInterface(key string, value interface{}) {
 	if value == nil {
 		return
 	}
 
-	switch value.(type) {
+	switch value := value.(type) {
 	case int8, int16, int32, int64:
 		v, _ := value.(int64)
-		s := strconv.FormatInt(v, 10)
-		p[key] = s
-		break
+		t[key] = strconv.FormatInt(v, 10)
 
 	case uint8, uint16, uint32, uint64:
 		v, _ := value.(uint64)
-		s := strconv.FormatUint(v, 10)
-		p[key] = s
-		break
+		t[key] = strconv.FormatUint(v, 10)
 
 	case float32, float64:
 		v, _ := value.(float64)
-		s := strconv.FormatFloat(v, 'f', 0, 64)
-		p[key] = s
-		break
+		t[key] = strconv.FormatFloat(v, 'f', 0, 64)
 
 	case bool:
-		v, _ := value.(bool)
-		s := strconv.FormatBool(v)
-		p[key] = s
-		break
+		t[key] = strconv.FormatBool(value)
 
 	case string:
-		v, _ := value.(string)
-		p[key] = v
-		break
+		t[key] = value
 	}
 
-	return
 }
 
 type SendSmsResponse struct {

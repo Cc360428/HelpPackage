@@ -1,12 +1,13 @@
-package main
+package logrus
 
 import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"github.com/sirupsen/logrus"
 	"log"
 	"net/http"
+
+	"github.com/sirupsen/logrus"
 )
 
 var allLvls = []logrus.Level{

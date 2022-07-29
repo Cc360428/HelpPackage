@@ -2,6 +2,7 @@ package conf
 
 import (
 	"fmt"
+
 	"gopkg.in/gcfg.v1"
 )
 

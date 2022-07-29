@@ -1,11 +1,12 @@
-package utils
+package randc
 
 // 雪花算法 生成唯一的值
 import (
-	"errors"
 	"fmt"
 	"sync"
 	"time"
+
+	"github.com/Cc360428/HelpPackage/utils"
 )
 
 type IdWorker struct {
@@ -46,10 +47,10 @@ func (w *IdWorker) InitIdWorker(workerId, datacenterId int64) error {
 	w.idLock = &sync.Mutex{}
 
 	if w.workerId < 0 || w.workerId > w.maxWorkerId {
-		return errors.New(fmt.Sprintf("workerId[%v] is less than 0 or greater than maxWorkerId[%v].", workerId, datacenterId))
+		return fmt.Errorf("workerId[%v] is less than 0 or greater than maxWorkerId[%v]", workerId, datacenterId)
 	}
 	if w.datacenterId < 0 || w.datacenterId > w.maxDatacenterId {
-		return errors.New(fmt.Sprintf("datacenterId[%d] is less than 0 or greater than maxDatacenterId[%d].", workerId, datacenterId))
+		return fmt.Errorf("datacenterId[%d] is less than 0 or greater than maxDatacenterId[%d]", workerId, datacenterId)
 	}
 	w.workerId = workerId
 	w.datacenterId = datacenterId
@@ -60,7 +61,7 @@ func (w *IdWorker) NextId() (int64, error) {
 	w.idLock.Lock()
 	timestamp := time.Now().UnixNano()
 	if timestamp < w.lastTimestamp {
-		return -1, errors.New(fmt.Sprintf("Clock moved backwards.  Refusing to generate id for %d milliseconds", w.lastTimestamp-timestamp))
+		return -1, fmt.Errorf("clock moved backwards.  Refusing to generate id for %v milliseconds", w.lastTimestamp-timestamp)
 	}
 
 	if timestamp == w.lastTimestamp {
@@ -101,6 +102,6 @@ func GetStringOrder() (order string) {
 	currWoker := IdWorker{}
 	_ = currWoker.InitIdWorker(1000, 1)
 	t, _ := currWoker.NextId()
-	order = Int64TurnString(t)
+	order = utils.Int64TurnString(t)
 	return order
 }

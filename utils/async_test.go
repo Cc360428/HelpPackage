@@ -2,7 +2,7 @@ package utils
 
 import (
 	"fmt"
-	"github.com/Cc360428/HelpPackage/utils/logs"
+	"log"
 	"testing"
 )
 
@@ -14,9 +14,9 @@ func TestNew(t *testing.T) {
 		res := <-chans
 		for _, resultItems := range res {
 			if resultItems[1] != nil {
-				logs.Error(resultItems[1])
+				log.Println(resultItems[1])
 			} else {
-				logs.Info(resultItems[0])
+				log.Println(resultItems[0])
 			}
 		}
 	}

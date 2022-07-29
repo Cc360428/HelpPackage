@@ -2,13 +2,13 @@
 package main
 
 import (
-	"github.com/Cc360428/HelpPackage/utils/logs"
+	"log"
 	"time"
 )
 
 func Cc() {
-	logs.Info("Hello 世界")
-	logs.Info("Version: v0.0.9")
+	log.Println("Hello 世界")
+	log.Println("Version: v0.0.9")
 }
 
 func main() {

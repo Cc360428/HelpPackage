@@ -2,8 +2,9 @@ package utils
 
 import (
 	"fmt"
-	"github.com/Cc360428/HelpPackage/utils/token"
 	"testing"
+
+	"github.com/Cc360428/HelpPackage/utils/token"
 )
 
 //

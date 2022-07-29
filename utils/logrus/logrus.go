@@ -1,12 +1,13 @@
-package main
+package logrus
 
 import (
-	"github.com/sirupsen/logrus"
 	"os"
 	"time"
+
+	"github.com/sirupsen/logrus"
 )
 
-// 级别
+// NewLogs 级别
 func NewLogs() *logrus.Logger {
 	log := logrus.New()
 	// JSONFormatter将日志格式化为可解析的json
@@ -37,19 +38,4 @@ func NewLogs() *logrus.Logger {
 	/**		记入函数  开启这个模式会增加性能开销。		*/
 	log.SetReportCaller(false)
 	return log
-}
-
-func main() {
-	logs := NewLogs()
-	//for i := 0; i < 15; i++ {
-	//
-	logs.Info("test")
-	//	logs.WithFields(logrus.Fields{
-	//		"name":  "Cc",
-	//		"age":   11,
-	//		"email": "li_chao_cheng@163.com",
-	//	}).Info("Failed to sewqnd event")
-	//}
-	//time.Sleep(time.Second * 5)
-
 }

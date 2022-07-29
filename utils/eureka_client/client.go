@@ -111,7 +111,8 @@ func (c *Client) handleSignal() {
 	if c.signalChan == nil {
 		c.signalChan = make(chan os.Signal)
 	}
-	signal.Notify(c.signalChan, syscall.SIGTERM, syscall.SIGINT, syscall.SIGKILL)
+
+	signal.Notify(c.signalChan, syscall.SIGTERM, syscall.SIGINT)
 	for {
 		switch <-c.signalChan {
 		case syscall.SIGINT:

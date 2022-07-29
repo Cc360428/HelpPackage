@@ -27,13 +27,14 @@ func TestLruCache(t *testing.T) {
 	_ = handleLRU(head, &Node{7, nil})
 	_ = printNode(head)
 	fmt.Printf("all node num is: %v\n\n", head.num)
-
+	_ = insertTailNode(head, &Node{4, nil})
 	//case 3 如果此数据之前已经被缓存在链表中了，我们遍历得到这个数据对应的结点，并将其从原来的位置删除，然后再插入到链表的头部。
 	_ = insertHeadNode(head, &Node{8, nil})
 	_ = printNode(head)
 	fmt.Printf("after add node list num is: %v\n\n", head.num)
 	_ = handleLRU(head, &Node{5, nil})
 	_ = printNode(head)
+
 	fmt.Printf("all node num is: %v\n\n", head.num)
 
 }
