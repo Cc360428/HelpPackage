@@ -39,6 +39,7 @@ require (
 	github.com/yalp/jsonpath v0.0.0-20180802001716-5cc68e5049a0 // indirect
 	github.com/yudai/gojsondiff v1.0.0 // indirect
 	github.com/yudai/golcs v0.0.0-20170316035057-ecda9a501e82 // indirect
+	go.mongodb.org/mongo-driver v1.10.0
 	go.uber.org/zap v1.21.0
 	golang.org/x/text v0.3.7
 	google.golang.org/grpc v1.45.0
