@@ -1,0 +1,11 @@
+version: '3'
+services:
+  redis-cc:
+    container_name: redis-cc
+    image: redis:latest
+    ports: # 映射端口号
+      - "6000:6379"
+    volumes:
+      - /home/save/redis/data/:/data
+      - /home/save/redis/conf/redis.conf:/etc/redis.conf
+    restart: "always"

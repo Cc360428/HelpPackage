@@ -3,14 +3,15 @@ module github.com/Cc360428/HelpPackage
 go 1.16
 
 require (
-	github.com/BurntSushi/toml v1.1.0
+	github.com/BurntSushi/toml v1.2.0
+	github.com/Shopify/sarama v1.35.0
 	github.com/Unknwon/goconfig v1.0.0
 	github.com/ajg/form v1.5.1 // indirect
 	github.com/alecthomas/template v0.0.0-20190718012654-fb15b899a751
 	github.com/astaxie/beego v1.12.3
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
-	github.com/fsnotify/fsnotify v1.5.1
-	github.com/gin-gonic/gin v1.7.7
+	github.com/fsnotify/fsnotify v1.5.4
+	github.com/gin-gonic/gin v1.8.1
 	github.com/go-kratos/kratos v1.0.1
 	github.com/go-redis/redis/v8 v8.11.5
 	github.com/go-sql-driver/mysql v1.6.0
@@ -26,15 +27,14 @@ require (
 	github.com/moul/http2curl v1.0.0 // indirect
 	github.com/nfnt/resize v0.0.0-20180221191011-83c6a9932646
 	github.com/olivere/elastic/v7 v7.0.32
-	github.com/onsi/gomega v1.19.0 // indirect
 	github.com/robfig/cron/v3 v3.0.1
 	github.com/sergi/go-diff v1.2.0 // indirect
-	github.com/shiena/ansicolor v0.0.0-20200904210342-c7312218db18 // indirect
-	github.com/sirupsen/logrus v1.8.1
+	github.com/sirupsen/logrus v1.9.0
 	github.com/skip2/go-qrcode v0.0.0-20200617195104-da1b6568686e
-	github.com/streadway/amqp v0.0.0-20190404075320-75d898a42a94
-	github.com/swaggo/swag v1.8.1
-	github.com/valyala/fasthttp v1.35.0 // indirect
+	github.com/smartystreets/goconvey v1.7.2 // indirect
+	github.com/streadway/amqp v1.0.0
+	github.com/swaggo/swag v1.8.4
+	github.com/valyala/fasthttp v1.38.0 // indirect
 	github.com/xeipuuv/gojsonschema v1.2.0 // indirect
 	github.com/xuanbo/requests v0.0.2
 	github.com/yalp/jsonpath v0.0.0-20180802001716-5cc68e5049a0 // indirect
@@ -43,7 +43,7 @@ require (
 	go.mongodb.org/mongo-driver v1.10.0
 	go.uber.org/zap v1.21.0
 	golang.org/x/text v0.3.7
-	google.golang.org/grpc v1.45.0
+	google.golang.org/grpc v1.48.0
 	gopkg.in/alexcesaro/quotedprintable.v3 v3.0.0-20150716171945-2caba252f4dc // indirect
 	gopkg.in/check.v1 v1.0.0-20201130134442-10cb98267c6c
 	gopkg.in/gcfg.v1 v1.2.3

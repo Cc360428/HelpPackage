@@ -1,0 +1,15 @@
+version: '3.1'
+
+services:
+  mongo: #服务的名字
+    image: mongo #对应的docker镜像的名字，可指定版本，如mongo:1.0,不指定则为最新版
+    container_name: cmongo1 #docker容器的名字
+    restart: always #当docker重启时，容器自动启动。
+    environment: #容器内部默认的设置
+      MONGO_INITDB_ROOT_USERNAME: root #mongo默认的账号
+      MONGO_INITDB_ROOT_PASSWORD: root #mongo默认的密码
+    ports: #容器运行的端口号和对应的容器内部的端口号
+      - "27001:27017"
+    volumes: # 数据持久化
+      - ./database:/data/db
+    command: [ --auth ] # 指定需要认证，mongdb默认是无认证的

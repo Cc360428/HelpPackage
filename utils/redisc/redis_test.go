@@ -1,7 +1,7 @@
 /**
  * @Author: Cc
- * @Description: 描述
- * @File: client_test.go
+ * @Description: 演示
+ * @File: redis_test.go
  * @Version: 1.0.0
  * @Date: 2022/7/28 18:28
  * @Software : GoLand
