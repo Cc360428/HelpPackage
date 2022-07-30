@@ -32,6 +32,7 @@ require (
 	github.com/shiena/ansicolor v0.0.0-20200904210342-c7312218db18 // indirect
 	github.com/sirupsen/logrus v1.8.1
 	github.com/skip2/go-qrcode v0.0.0-20200617195104-da1b6568686e
+	github.com/streadway/amqp v0.0.0-20190404075320-75d898a42a94
 	github.com/swaggo/swag v1.8.1
 	github.com/valyala/fasthttp v1.35.0 // indirect
 	github.com/xeipuuv/gojsonschema v1.2.0 // indirect
