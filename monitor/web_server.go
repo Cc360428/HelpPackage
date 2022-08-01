@@ -10,8 +10,8 @@ import (
 
 	"github.com/BurntSushi/toml"
 	"github.com/gin-gonic/gin"
-	_ "github.com/go-sql-driver/mysql"
-	"github.com/jinzhu/gorm"
+	"gorm.io/driver/mysql"
+	"gorm.io/gorm"
 )
 
 var (
@@ -80,12 +80,13 @@ func RConfig() {
 
 func mysqlClient() {
 	log.Println("更新mysql")
-	mysql := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8&parseTime=True&loc=Local",
+	mysqlStr := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8&parseTime=True&loc=Local",
 		"root", conf.Password,
 		"lichaocheng.top",
 		conf.Port,
 		"cc")
-	db, err := gorm.Open("mysql", mysql)
+
+	db, err := gorm.Open(mysql.Open(mysqlStr), &gorm.Config{})
 	if err != nil {
 		panic(err)
 	}

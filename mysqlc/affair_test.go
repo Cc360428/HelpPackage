@@ -1,4 +1,4 @@
-package mysql_help
+package mysqlc
 
 import (
 	"database/sql"
