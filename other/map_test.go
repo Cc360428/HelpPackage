@@ -1,4 +1,4 @@
-package utils
+package other
 
 import (
 	"log"
@@ -49,4 +49,21 @@ func TestJsonToMap(t *testing.T) {
 		log.Println(err.Error())
 	}
 	log.Println(ma)
+}
+
+func TestMax(t *testing.T) {
+	r := map[string]int64{}
+	r["Cc"] = 26
+	r["LCC"] = 66
+	t.Log(Max(r))
+}
+
+func TestMin(t *testing.T) {
+	r := map[string]int64{}
+	r["Cc"] = 26
+	r["LCC"] = 4
+	r["XM"] = 1
+	r["LZ"] = 2
+	r["ZS"] = 3
+	t.Log(Min(r))
 }

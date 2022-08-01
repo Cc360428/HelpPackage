@@ -1,5 +1,5 @@
-// Package utils 异步执行
-package utils
+// Package other 异步执行
+package other
 
 // 异步执行类，提供异步执行的功能，可快速方便的开启异步执行
 // 通过NewAsync() 来创建一个新的异步操作对象

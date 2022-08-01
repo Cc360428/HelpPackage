@@ -1,8 +1,9 @@
-// token
-package utils
+// Package web token
+package web
 
 import (
 	"errors"
+	"github.com/Cc360428/HelpPackage/other"
 	"time"
 
 	"github.com/dgrijalva/jwt-go"
@@ -15,7 +16,7 @@ type UserInfo struct {
 	RegionId int64  `json:"region_id"`
 }
 
-// 创建token
+// CreateToken 创建token
 func CreateToken(user *UserInfo) (tokens string, err error) {
 	//自定义claim
 	claim := jwt.MapClaims{
@@ -38,7 +39,7 @@ func secret() jwt.Keyfunc {
 	}
 }
 
-// 获取token中的结构体
+// ParseToken 获取token中的结构体
 func ParseToken(tokens string) (user *UserInfo, err error) {
 	user = &UserInfo{}
 	token, err := jwt.Parse(tokens, secret())
@@ -55,9 +56,9 @@ func ParseToken(tokens string) (user *UserInfo, err error) {
 		err = errors.New("token is invalid")
 		return
 	}
-	user.Id, err = ToInt64(claim["id"])
-	user.UserType, _ = ToInt64(claim["user_type"])
-	user.RegionId, _ = ToInt64(claim["region_id"])
+	user.Id, err = other.ToInt64(claim["id"])
+	user.UserType, _ = other.ToInt64(claim["user_type"])
+	user.RegionId, _ = other.ToInt64(claim["region_id"])
 	user.UserName = claim["user_name"].(string)
 	return
 }

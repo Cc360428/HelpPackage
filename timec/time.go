@@ -1,9 +1,8 @@
 package timec
 
 import (
+	"github.com/Cc360428/HelpPackage/other"
 	"time"
-
-	"github.com/Cc360428/HelpPackage/utils"
 )
 
 var (
@@ -77,7 +76,7 @@ func DateDay() (day int) {
 func GetWeek() (week int64) {
 	t := time.Now()
 	i := int(t.Weekday())
-	week, _ = utils.ToInt64(i)
+	week, _ = other.ToInt64(i)
 	return week
 }
 
@@ -172,13 +171,13 @@ func UnixTimeString(q int64) (p string) {
 	t := time.Now()
 	if q == 1 { //秒
 		second := t.Unix()
-		return utils.Int64TurnString(second)
+		return other.Int64TurnString(second)
 	} else if q == 2 { //纳秒
 		nanosecond := t.UnixNano()
-		return utils.Int64TurnString(nanosecond)
+		return other.Int64TurnString(nanosecond)
 	} else if q == 3 { //毫秒
 		millisecond := t.UnixNano() / 1e6
-		return utils.Int64TurnString(millisecond)
+		return other.Int64TurnString(millisecond)
 	}
 	return ""
 }

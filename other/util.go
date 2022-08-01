@@ -1,4 +1,4 @@
-package utils
+package other
 
 import (
 	"encoding/json"
@@ -8,7 +8,7 @@ import (
 	"reflect"
 	"strconv"
 
-	"github.com/Cc360428/HelpPackage/utils/uuid"
+	"github.com/Cc360428/HelpPackage/uuid"
 	"github.com/goinggo/mapstructure"
 	"golang.org/x/text/language"
 	"golang.org/x/text/message"

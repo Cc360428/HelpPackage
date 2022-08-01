@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/Cc360428/HelpPackage/utils/ratelimit"
+	"github.com/Cc360428/HelpPackage/ratelimit"
 	"github.com/gin-gonic/gin"
 )
 

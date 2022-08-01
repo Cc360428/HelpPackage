@@ -1,5 +1,5 @@
 // string
-package utils
+package other
 
 import (
 	"bytes"

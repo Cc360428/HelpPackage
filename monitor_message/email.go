@@ -1,15 +1,15 @@
-// Package utils email send
-package utils
+// Package monitor_message email send
+package monitor_message
 
 import (
-	"log"
-
+	"github.com/Cc360428/HelpPackage/other"
 	"gopkg.in/gomail.v2"
+	"log"
 )
 
 func EmailCode(email string) (code string, err error) {
 	log.Println("输入的邮箱是：", email)
-	code = GenValidateCode(6)
+	code = other.GenValidateCode(6)
 	m := gomail.NewMessage()
 	m.SetAddressHeader("From", "", "Smart")           // 发件人
 	m.SetHeader("To", m.FormatAddress(email, "user")) // 收件人

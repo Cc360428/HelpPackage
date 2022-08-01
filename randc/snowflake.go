@@ -3,10 +3,9 @@ package randc
 // 雪花算法 生成唯一的值
 import (
 	"fmt"
+	"github.com/Cc360428/HelpPackage/other"
 	"sync"
 	"time"
-
-	"github.com/Cc360428/HelpPackage/utils"
 )
 
 type IdWorker struct {
@@ -102,6 +101,6 @@ func GetStringOrder() (order string) {
 	currWoker := IdWorker{}
 	_ = currWoker.InitIdWorker(1000, 1)
 	t, _ := currWoker.NextId()
-	order = utils.Int64TurnString(t)
+	order = other.Int64TurnString(t)
 	return order
 }

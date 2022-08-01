@@ -4,7 +4,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/Cc360428/HelpPackage/utils/timec"
+	"github.com/Cc360428/HelpPackage/timec"
 	"github.com/robfig/cron/v3"
 )
 
