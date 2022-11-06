@@ -22,6 +22,7 @@ require (
 	github.com/imkira/go-interpol v1.1.0 // indirect
 	github.com/json-iterator/go v1.1.12
 	github.com/kataras/iris/v12 v12.1.8
+	github.com/mattn/go-sqlite3 v2.0.3+incompatible
 	github.com/moul/http2curl v1.0.0 // indirect
 	github.com/nfnt/resize v0.0.0-20180221191011-83c6a9932646
 	github.com/olivere/elastic/v7 v7.0.32
@@ -52,5 +53,5 @@ require (
 	gopkg.in/yaml.v2 v2.4.0
 	gorm.io/driver/mysql v1.3.5
 	gorm.io/driver/sqlserver v1.3.2
-	gorm.io/gorm v1.23.9-0.20220713102635-3262daf8d468
+	gorm.io/gorm v1.24.0
 )
