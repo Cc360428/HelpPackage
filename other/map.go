@@ -3,6 +3,7 @@ package other
 import (
 	"encoding/json"
 	"fmt"
+	"sort"
 )
 
 // MapToJson map 转 Json
@@ -70,4 +71,13 @@ func Max(m map[string]int64) (key string) {
 		}
 	}
 	return
+}
+
+func SortMap(rate map[int64]float64) []int64 {
+	keys := make([]int64, 0, len(rate))
+	for k := range rate {
+		keys = append(keys, k)
+	}
+	sort.Slice(keys, func(i, j int) bool { return rate[keys[i]] > rate[keys[j]] })
+	return keys
 }

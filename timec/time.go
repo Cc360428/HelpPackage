@@ -101,7 +101,7 @@ func TodayLastSec() int64 {
 }
 
 // DateDayZero 获取当日零时时间戳（秒）
-//Time stamp of the morning of the day: unit seconds
+// Time stamp of the morning of the day: unit seconds
 func DateDayZero() (r int64) {
 	timeStr := time.Now().Format("2006-01-02")
 	//使用Parse 默认获取为UTC时区 需要获取本地时区 所以使用ParseInLocation
@@ -143,10 +143,10 @@ func DayMi() (rr int64) {
 }
 
 // UnixTimeInt64 返回值int64类型
-//时间戳（秒）： time.Now().Unix())
-//时间戳（纳秒）： time.Now().UnixNano())
-//时间戳（毫秒）： time.Now().UnixNano()/1e6)
-//时间戳（纳秒转换为秒） time.Now().UnixNano()/1e9)
+// 时间戳（秒）： time.Now().Unix())
+// 时间戳（纳秒）： time.Now().UnixNano())
+// 时间戳（毫秒）： time.Now().UnixNano()/1e6)
+// 时间戳（纳秒转换为秒） time.Now().UnixNano()/1e9)
 func UnixTimeInt64(q int64) (p int64) {
 	t := time.Now()
 	if q == 1 { //秒
@@ -163,10 +163,10 @@ func UnixTimeInt64(q int64) (p int64) {
 }
 
 // UnixTimeString 返回值string类型
-//时间戳（秒）： time.Now().Unix())
-//时间戳（纳秒）： time.Now().UnixNano())
-//时间戳（毫秒）： time.Now().UnixNano()/1e6)
-//时间戳（纳秒转换为秒） time.Now().UnixNano()/1e9)
+// 时间戳（秒）： time.Now().Unix())
+// 时间戳（纳秒）： time.Now().UnixNano())
+// 时间戳（毫秒）： time.Now().UnixNano()/1e6)
+// 时间戳（纳秒转换为秒） time.Now().UnixNano()/1e9)
 func UnixTimeString(q int64) (p string) {
 	t := time.Now()
 	if q == 1 { //秒
@@ -207,4 +207,11 @@ func StringToInt64(s string) (t int64) {
 	tmp, _ := time.ParseInLocation(s, datetime, loc)
 	timestamp := tmp.Unix()
 	return timestamp
+}
+
+// GetDuration 前几个小时时间戳
+func GetDuration(hoursAgo int) string {
+	currentTime := time.Now()
+	oldTime := currentTime.Add(-time.Hour * time.Duration(hoursAgo))
+	return oldTime.Format("2006010215")
 }
