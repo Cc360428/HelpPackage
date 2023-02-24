@@ -1,6 +1,6 @@
 /**
  * @Author: Cc
- * @Description: 描述
+ * @Description: telegram message
  * @File: telegram_test.go
  * @Version: 1.0.0
  * @Date: 2022/7/27 16:07

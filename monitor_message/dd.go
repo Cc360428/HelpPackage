@@ -5,16 +5,18 @@ package monitor_message
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"strings"
 )
 
-var (
-	baseUrl = "https://oapi.dingtalk.com/robot/send?access_token="
-	ddToken = "c2a5a11f2d15761fbc6a4222ad77a9778d547361afdc4cf8918e4f4c706870ec"
-	url     = fmt.Sprintf("%s%s", baseUrl, ddToken)
-)
+const baseUrl = "https://oapi.dingtalk.com/robot/send?access_token="
+
+var url string
+
+func NewDingDing(token string) {
+	url = fmt.Sprintf("%s%s", baseUrl, token)
+}
 
 type NailRobot struct {
 	Msgtype string `json:"msgtype"`
@@ -34,9 +36,10 @@ func Send(messageType, message string, isAtAll bool) error {
 	messageAll.Text.Content = fmt.Sprintf("%s %s", messageType, message)
 	if isAtAll {
 		messageAll.At.IsAtAll = true
-	} else {
-		messageAll.At.AtMobiles = []string{"18270681615"}
 	}
+	//else {
+	//messageAll.At.AtMobiles = []string{"18270681615"}
+	//}
 	marshal, err := json.Marshal(messageAll)
 	if err != nil {
 		fmt.Println("钉钉预警错误", err.Error())
@@ -51,7 +54,7 @@ func Send(messageType, message string, isAtAll bool) error {
 		return err
 	}
 	defer resp.Body.Close()
-	body, err := ioutil.ReadAll(resp.Body)
+	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		fmt.Println(err.Error())
 		return err
