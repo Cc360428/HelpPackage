@@ -4,13 +4,6 @@ import (
 	"testing"
 )
 
-/*
-*
-Id
-UserName
-UserType
-RegionId
-*/
 func TestCreateToken(t *testing.T) {
 	token, err := CreateToken(&UserInfo{
 		Id:       1,
