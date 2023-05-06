@@ -8,13 +8,13 @@ require (
 	github.com/Unknwon/goconfig v1.0.0
 	github.com/alecthomas/template v0.0.0-20190718012654-fb15b899a751
 	github.com/astaxie/beego v1.12.3
-	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/fsnotify/fsnotify v1.6.0
 	github.com/gin-gonic/gin v1.9.0
 	github.com/go-kratos/kratos v1.0.1
 	github.com/go-redis/redis/v8 v8.11.5
 	github.com/go-telegram-bot-api/telegram-bot-api/v5 v5.5.1
 	github.com/goinggo/mapstructure v0.0.0-20140717182941-194205d9b4a9
+	github.com/golang-jwt/jwt/v5 v5.0.0
 	github.com/golang/glog v1.1.1
 	github.com/golang/protobuf v1.5.2
 	github.com/json-iterator/go v1.1.12

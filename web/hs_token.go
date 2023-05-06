@@ -3,10 +3,10 @@ package web
 
 import (
 	"errors"
-	"github.com/Cc360428/HelpPackage/other"
 	"time"
 
-	"github.com/dgrijalva/jwt-go"
+	"github.com/Cc360428/HelpPackage/other"
+	"github.com/golang-jwt/jwt/v5"
 )
 
 type UserInfo struct {
