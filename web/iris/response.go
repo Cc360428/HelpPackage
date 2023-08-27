@@ -27,7 +27,7 @@ func ResponseStatusOK(ctx iris.Context, code int, msg string, data interface{}) 
 	responseBody.Code = code
 	responseBody.Msg = msg
 	responseBody.Data = data
-	_, err := ctx.JSON(responseBody)
+	err := ctx.JSON(responseBody)
 	if err != nil {
 		log.Println("response error ", err.Error())
 		ctx.StatusCode(http.StatusInternalServerError)
@@ -45,7 +45,7 @@ func ResponseStatusBadRequest(ctx iris.Context, code int, msg string, data inter
 	responseBody.Code = code
 	responseBody.Msg = msg
 	responseBody.Data = data
-	_, err := ctx.JSON(responseBody)
+	err := ctx.JSON(responseBody)
 	if err != nil {
 		log.Println("response error ", err.Error())
 		ctx.StatusCode(http.StatusInternalServerError)
