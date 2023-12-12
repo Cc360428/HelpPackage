@@ -1,7 +1,7 @@
 # HelpPackage
 
 [![Language](https://img.shields.io/badge/Language-Go-blue.svg)](https://golang.org/)
-[![v1.14](https://img.shields.io/github/go-mod/go-version/Cc360428/HelpPackage)](https://github.com/Cc360428/HelpPackage)
+[![v1.20](https://img.shields.io/github/go-mod/go-version/Cc360428/HelpPackage)](https://github.com/Cc360428/HelpPackage)
 [![stars](https://img.shields.io/github/stars/Cc360428/HelpPackage?style=social)](https://github.com/Cc360428/HelpPackage/stargazers)
 [![pull](https://img.shields.io/github/issues-pr/Cc360428/HelpPackage)](https://github.com/Cc360428/HelpPackage)
 [![Download](https://img.shields.io/github/downloads/Cc360428/HelpPackage/total)](https://github.com/Cc360428/HelpPackage)
