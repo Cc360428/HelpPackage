@@ -59,7 +59,7 @@ func Min(m map[string]int64) (key string) {
 }
 
 // Max ...
-// @Description: 去除最大的
+// @Description: 取出最大的
 // @param m
 // @return key
 func Max(m map[string]int64) (key string) {
