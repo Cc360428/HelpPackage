@@ -1,0 +1,3 @@
+{"level":"debug","t":"2026-6-8 22:2:54 ","caller":"logger_zap/zap_test.go:21","msg":"sada","app":"test"}
+{"level":"info","t":"2026-6-8 22:2:54 ","caller":"logger_zap/zap_test.go:22","msg":"sada","app":"test"}
+{"level":"error","t":"2026-6-8 22:2:54 ","caller":"logger_zap/zap_test.go:23","msg":"error","app":"test","trace":"github.com/Cc360428/HelpPackage/logger_zap.TestInitZapLog\n\t/opt/code/github.com/Cc360428/public/HelpPackage/logger_zap/zap_test.go:23\ntesting.tRunner\n\t/usr/local/go/src/testing/testing.go:1792"}

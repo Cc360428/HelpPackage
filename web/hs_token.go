@@ -10,6 +10,9 @@ import (
 	"github.com/golang-jwt/jwt/v5"
 )
 
+// 签名密钥，应该从配置文件或环境变量中获取
+var secretKey = "your-secret-key"
+
 type UserInfo struct {
 	Id       int64  `json:"id"`
 	UserName string `json:"user_name"`
@@ -30,13 +33,13 @@ func CreateToken(user *UserInfo) (tokens string, err error) {
 		"exp":       time.Now().Add(time.Hour * 480).Unix(), //有效期20天
 	}
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claim)
-	tokens, err = token.SignedString([]byte(token.Signature))
+	tokens, err = token.SignedString([]byte(secretKey))
 	return
 }
 
 func secret() jwt.Keyfunc {
 	return func(token *jwt.Token) (interface{}, error) {
-		return []byte(token.Signature), nil
+		return []byte(secretKey), nil
 	}
 }
 

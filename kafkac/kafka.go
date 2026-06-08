@@ -40,13 +40,12 @@ func InitStartProducer(address []string) (sarama.SyncProducer, error) {
 // InitStartConsumer 传不同的groupID
 func InitStartConsumer(address []string, groupID string) (sarama.ConsumerGroup, error) {
 	config := sarama.NewConfig()
-	config.Producer.RequiredAcks = sarama.WaitForAll
 	config.Version = sarama.V0_10_2_0
-	config.Producer.Partitioner = sarama.NewRandomPartitioner
-	config.Producer.Return.Successes = true
+	config.Consumer.Group.Rebalance.Strategy = sarama.BalanceStrategyRoundRobin
+	config.Consumer.Offsets.Initial = sarama.OffsetNewest
 	consumer, err := sarama.NewConsumerGroup(address, groupID, config)
 	if err != nil {
-		log.Fatalln("InitStartKafka Error", err.Error())
+		log.Fatalln("InitStartConsumer Error", err.Error())
 	}
 	return consumer, nil
 }

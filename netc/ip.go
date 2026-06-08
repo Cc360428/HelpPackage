@@ -2,9 +2,8 @@
 package netc
 
 import (
-	"bytes"
 	"encoding/json"
-	"io/ioutil"
+	"io"
 	"net"
 	"net/http"
 )
@@ -16,9 +15,7 @@ func GetExternal() string {
 		return ""
 	}
 	defer resp.Body.Close()
-	content, _ := ioutil.ReadAll(resp.Body)
-	buf := new(bytes.Buffer)
-	_, _ = buf.ReadFrom(resp.Body)
+	content, _ := io.ReadAll(resp.Body)
 	return string(content)
 }
 
@@ -51,7 +48,7 @@ func TaoBaoAPI(ip string) *IpApiCom {
 	}
 	defer resp.Body.Close()
 
-	out, err := ioutil.ReadAll(resp.Body)
+	out, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return nil
 	}

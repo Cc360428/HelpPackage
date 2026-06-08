@@ -2,14 +2,22 @@ package other
 
 import (
 	"encoding/json"
-	ccHelp "github.com/Cc360428/HelpPackage/web/beego"
-	"io/ioutil"
+	"os"
 )
+
+// HelperConvetInterface converts an interface to another interface using JSON marshaling
+func HelperConvetInterface(in interface{}, out interface{}) error {
+	inBytes, err := json.Marshal(in)
+	if err != nil {
+		return err
+	}
+	return json.Unmarshal(inBytes, out)
+}
 
 // 取值
 func SwaggerJson(swagger string) (v map[string]interface{}) {
 	xxx := make(map[string]interface{})
-	bytes, err := ioutil.ReadFile(swagger)
+	bytes, err := os.ReadFile(swagger)
 	if err != nil {
 		return nil
 	}
@@ -24,7 +32,7 @@ func SwaggerJson(swagger string) (v map[string]interface{}) {
 // 获取值
 func GetOpId(vv interface{}) (ret interface{}) {
 	dd := make(map[string]interface{})
-	_ = ccHelp.HelperConvetInterface(vv, &dd)
+	_ = HelperConvetInterface(vv, &dd)
 	for kk, value := range dd {
 		if kk == "operationId" {
 			ret = value

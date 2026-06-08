@@ -200,13 +200,15 @@ func MonthlyTotal(year int, month int) (days int) {
 	return
 }
 
-// StringToInt64 标准时间格式(秒)转换为int64时间戳
-func StringToInt64(s string) (t int64) {
-	datetime := "2015-01-01 00:00:00" //待转化为时间戳的字符串
-	loc, _ := time.LoadLocation(s)
-	tmp, _ := time.ParseInLocation(s, datetime, loc)
-	timestamp := tmp.Unix()
-	return timestamp
+// StringToInt64 标准时间格式转换为int64时间戳
+// format: 时间格式，如 "2006-01-02 15:04:05"
+// timeStr: 时间字符串
+func StringToInt64(format, timeStr string) (t int64, err error) {
+	tmp, err := time.ParseInLocation(format, timeStr, time.Local)
+	if err != nil {
+		return 0, err
+	}
+	return tmp.Unix(), nil
 }
 
 // GetDuration 前几个小时时间戳

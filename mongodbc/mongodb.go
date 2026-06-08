@@ -27,7 +27,7 @@ func InitStart(url string) (*mongo.Client, error) {
 
 	err = connect.Ping(ctx, nil)
 	if err != nil {
-		log.Fatalln("Ping Error:", err)
+		log.Println("Ping Error:", err)
 		return nil, err
 	}
 

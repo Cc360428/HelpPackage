@@ -39,3 +39,29 @@ func NewLogs() *logrus.Logger {
 	log.SetReportCaller(false)
 	return log
 }
+
+// NewLogsWithFileClose 返回日志和文件关闭函数
+func NewLogsWithFileClose() (*logrus.Logger, func()) {
+	log := logrus.New()
+	log.SetFormatter(&logrus.JSONFormatter{
+		TimestampFormat:   "2006-01-02 15:04:05",
+		DisableTimestamp:  false,
+		DisableHTMLEscape: false,
+	})
+	log.SetOutput(os.Stdout)
+	uploadDir := "utils/logrus/logruslogtest/" + time.Now().Format("2006/01/02/15/04/05/")
+	_ = os.MkdirAll(uploadDir, os.ModePerm)
+	file, err := os.OpenFile(uploadDir+"logrus.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
+	if err == nil {
+		log.Out = file
+	} else {
+		log.Info("Failed to log to file, using default stderr", err.Error())
+	}
+	log.SetLevel(logrus.DebugLevel)
+	log.SetReportCaller(false)
+	return log, func() {
+		if file != nil {
+			file.Close()
+		}
+	}
+}

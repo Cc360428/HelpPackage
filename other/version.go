@@ -9,18 +9,18 @@
 
 package other
 
-/*
-const char* build_time(void)
-{
-    static const char* psz_build_time = "["__DATE__ "  " __TIME__ "]";
-    return psz_build_time;
-}
-*/
-import "C"
 import "fmt"
 
 const version = "v0.0.1"
 
+var buildTime = "unknown"
+var buildCommit = "unknown"
+
 func GetVersion() string {
-	return fmt.Sprintf("%v %v", version, C.GoString(C.build_time()))
+	return fmt.Sprintf("%v %v", version, buildTime)
+}
+
+func SetBuildInfo(time, commit string) {
+	buildTime = time
+	buildCommit = commit
 }

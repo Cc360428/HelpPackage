@@ -90,11 +90,11 @@ func (w *IdWorker) NextId() (int64, error) {
 }
 
 func (w *IdWorker) tilNextMillis() int64 {
-	timestamp := time.Now().UnixNano()
-	if timestamp <= w.lastTimestamp {
+	timestamp := time.Now().UnixNano() / int64(time.Millisecond)
+	for timestamp <= w.lastTimestamp/int64(time.Millisecond) {
 		timestamp = time.Now().UnixNano() / int64(time.Millisecond)
 	}
-	return timestamp
+	return timestamp * int64(time.Millisecond)
 }
 
 func GetStringOrder() (order string) {

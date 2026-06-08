@@ -3,6 +3,7 @@ package gin_utils
 import (
 	"errors"
 	"fmt"
+	"sync"
 	"time"
 
 	"github.com/Cc360428/HelpPackage/ratelimit"
@@ -16,6 +17,7 @@ type RateLimiterMiddleware struct {
 	capacity     int64
 	ratekeygen   RateKeyFunc
 	limiters     map[string]*ratelimit.Bucket
+	mu           sync.Mutex
 }
 
 func (r *RateLimiterMiddleware) get(ctx *gin.Context) (*ratelimit.Bucket, error) {
@@ -24,6 +26,9 @@ func (r *RateLimiterMiddleware) get(ctx *gin.Context) (*ratelimit.Bucket, error)
 	if err != nil {
 		return nil, err
 	}
+
+	r.mu.Lock()
+	defer r.mu.Unlock()
 
 	if limiter, existed := r.limiters[key]; existed {
 		return limiter, nil
@@ -53,9 +58,10 @@ func (r *RateLimiterMiddleware) Middleware() gin.HandlerFunc {
 func NewRateLimiter(interval time.Duration, capacity int64, keyGen RateKeyFunc) *RateLimiterMiddleware {
 	limiters := make(map[string]*ratelimit.Bucket)
 	return &RateLimiterMiddleware{
-		interval,
-		capacity,
-		keyGen,
-		limiters,
+		fillInterval: interval,
+		capacity:     capacity,
+		ratekeygen:   keyGen,
+		limiters:     limiters,
+		mu:           sync.Mutex{},
 	}
 }

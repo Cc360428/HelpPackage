@@ -41,13 +41,18 @@ func JsonToMap(jsonStr string) (map[string]interface{}, error) {
 // Min ...
 // @Description: 取出最小的value
 // @param m
-// @return v
-func Min(m map[string]int64) (key string) {
+// @return key, 是否找到
+func Min(m map[string]int64) (key string, found bool) {
+	if len(m) == 0 {
+		return "", false
+	}
 	var min int64
+	var first bool = true
 	for k, v := range m {
-		if min == 0 {
+		if first {
 			min = v
 			key = k
+			first = false
 			continue
 		}
 		if v < min {
@@ -55,22 +60,32 @@ func Min(m map[string]int64) (key string) {
 			key = k
 		}
 	}
-	return
+	return key, true
 }
 
 // Max ...
 // @Description: 取出最大的
 // @param m
-// @return key
-func Max(m map[string]int64) (key string) {
-	var maxNumber int64
-	for k := range m {
-		if m[k] > maxNumber {
-			maxNumber = m[k]
+// @return key, 是否找到
+func Max(m map[string]int64) (key string, found bool) {
+	if len(m) == 0 {
+		return "", false
+	}
+	var max int64
+	var first bool = true
+	for k, v := range m {
+		if first {
+			max = v
+			key = k
+			first = false
+			continue
+		}
+		if v > max {
+			max = v
 			key = k
 		}
 	}
-	return
+	return key, true
 }
 
 func SortMap(rate map[int64]float64) []int64 {

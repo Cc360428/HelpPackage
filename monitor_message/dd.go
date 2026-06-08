@@ -8,14 +8,26 @@ import (
 	"io"
 	"net/http"
 	"strings"
+	"sync"
 )
 
 const baseUrl = "https://oapi.dingtalk.com/robot/send?access_token="
 
-var url string
+type DingDingClient struct {
+	url string
+	mu  sync.Mutex
+}
 
-func NewDingDing(token string) {
-	url = fmt.Sprintf("%s%s", baseUrl, token)
+var defaultClient *DingDingClient
+
+func NewDingDing(token string) *DingDingClient {
+	return &DingDingClient{
+		url: fmt.Sprintf("%s%s", baseUrl, token),
+	}
+}
+
+func InitDefaultDingDing(token string) {
+	defaultClient = NewDingDing(token)
 }
 
 type NailRobot struct {
@@ -31,6 +43,14 @@ type NailRobot struct {
 
 // Send Send("Error", " test", true)
 func Send(messageType, message string, isAtAll bool) error {
+	if defaultClient == nil {
+		return fmt.Errorf("dingding client not initialized, call InitDefaultDingDing first")
+	}
+	return defaultClient.Send(messageType, message, isAtAll)
+}
+
+// Send 使用客户端发送消息
+func (c *DingDingClient) Send(messageType, message string, isAtAll bool) error {
 	var messageAll NailRobot
 	messageAll.Msgtype = "text"
 	messageAll.Text.Content = fmt.Sprintf("%s %s", messageType, message)
@@ -45,7 +65,7 @@ func Send(messageType, message string, isAtAll bool) error {
 		fmt.Println("钉钉预警错误", err.Error())
 		return err
 	}
-	resp, err := http.Post(url,
+	resp, err := http.Post(c.url,
 		"application/json",
 		strings.NewReader(string(marshal)),
 	)

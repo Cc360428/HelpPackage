@@ -4,13 +4,14 @@ import (
 	"github.com/golang/glog"
 )
 
-func SendSms(tplCode, mobile, code string) bool {
+// SendSms 发送短信，需要传入 AccessKeyId 和 AppSecret
+func SendSms(tplCode, mobile, code, accessKeyId, appSecret, signName string) bool {
 	var userParams UserParams
 	userParams.PhoneNumbers = mobile
 	userParams.TemplateCode = tplCode
-	userParams.AccessKeyId = ""
-	userParams.AppSecret = ""
-	userParams.SignName = "SignName"
+	userParams.AccessKeyId = accessKeyId
+	userParams.AppSecret = appSecret
+	userParams.SignName = signName
 	userParams.TemplateParam = "{\"code\": \"" + code + "\"}"
 	ok, msg, err := SendMessage(&userParams)
 	if !ok {
@@ -20,17 +21,17 @@ func SendSms(tplCode, mobile, code string) bool {
 	return ok
 }
 
-// 注册模板
-func SendSmsRegCode(mobile, code string) bool {
-	return SendSms("SMS_143718474", mobile, code)
+// SendSmsRegCode 注册模板
+func SendSmsRegCode(mobile, code, accessKeyId, appSecret, signName string) bool {
+	return SendSms("SMS_143718474", mobile, code, accessKeyId, appSecret, signName)
 }
 
-// 其他模板
-func SendSmsResetCode(mobile, code string) bool {
-	return SendSms("SMS_155370082", mobile, code)
+// SendSmsResetCode 其他模板
+func SendSmsResetCode(mobile, code, accessKeyId, appSecret, signName string) bool {
+	return SendSms("SMS_155370082", mobile, code, accessKeyId, appSecret, signName)
 }
 
-// 其他模板
-func SendSmsLoginCode(mobile, code string) bool {
-	return SendSms("SMS_155370082", mobile, code)
+// SendSmsLoginCode 其他模板
+func SendSmsLoginCode(mobile, code, accessKeyId, appSecret, signName string) bool {
+	return SendSms("SMS_155370082", mobile, code, accessKeyId, appSecret, signName)
 }

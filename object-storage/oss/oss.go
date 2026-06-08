@@ -129,7 +129,7 @@ func (c *Client) GetObjectList(marker string, maxKeys int) ([]string, error) {
 		return nil, err
 	}
 
-	keys := make([]string, len(objects.Objects))
+	keys := make([]string, 0, len(objects.Objects))
 	for _, i2 := range objects.Objects {
 		keys = append(keys, i2.Key)
 	}
